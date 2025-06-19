@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+    <div class="load_box">
+        <div class="load"></div>
+    </div>
+    <header class="p-10">
+        <h1>Heavy Html Page</h1>
+    </header>
+    <main class="p-10">
+        <div>
+            <h4>Large Text Content</h4>
+            <p>
+                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+        </div>
+        <div>
+            <h4>Images</h4>
+            <div>
+                <img src="./assets/image/1.jpg" alt="first image">
+                <img src="./assets/image/2.jpg" alt="second image">
+                <img src="./assets/image/3.png" alt="third image">
+            </div>
+        </div>
+        <div>
+            <h4>Videos</h4>
+            <div>
+                <video src="./assets/video/1.mp4" height="200" controls></video>
+                <video src="./assets/video/2.mp4" height="200" controls></video>
+            </div>
+        </div>
+        <div>
+            <h4>Interactice Forms</h4>
+            <form action="">
+                <div>
+                    <label for="">name</label>
+                    <input type="text" placeholder="name">
+                </div>
+                <div>
+                    <label for="">email</label>
+                    <input type="text" placeholder="email">
+                </div>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+        <div>
+            <h4>Dynamic Content</h4>
+            <div class="dynamic_content"></div>
+            <button onclick="add_dynamic_content()">Add Dynamic Content</button>
+        </div>
+    </main>
+    <footer class="p-10">
+        <h6>Footer Content Here</h6>
+    </footer>
+    <script src="./assets/jquery.min.js"></script>
+</body>
+<script>
+    $(window).on("load", function(){
+        $(".load_box").fadeOut(1000,()=>{
+            $(this).hide();
+        });
+    });
+    function add_dynamic_content(){
+        if($(".dynamic_content").text()==""){
+            $(".dynamic_content").append(`
+                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            `)
+        }else{
+            $(".dynamic_content").empty()
+        }
+    }
+</script>
+</html>

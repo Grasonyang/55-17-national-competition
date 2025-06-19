@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/jquery-ui.min.css">
+</head>
+<body>
+    <!-- <img src="./assets/image/A.png" alt="after"> -->
+    <div class="container">
+        <img src="./assets/image/B.png" class="before_image" alt="before">
+        <img src="./assets/image/divider.svg" class="splitter"  alt="splitter">
+        <div class="after_container">
+            <img src="./assets/image/A.png" class="after_image" alt="after">
+        </div>
+    </div>
+    <script src="./assets/jquery.min.js"></script>
+    <script src="./assets/jquery-ui.min.js"></script>
+</body>
+<script>
+    $(".splitter").draggable({
+        axis: "x",
+        containment: ".container",
+        drag: function(event, ui) {
+            draw();
+        }
+    });
+    function draw(){
+        let left = $(".splitter").position().left+$(".splitter").width();
+        $(".after_container").css("width", left + "px");
+    }
+</script>
+</html>
