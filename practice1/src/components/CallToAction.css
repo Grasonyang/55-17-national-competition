@@ -1,0 +1,20 @@
+.call_to_action{
+    height: 500px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../assets/image/Lyon-14.jpg");
+    background-position: center;
+    background-size: cover;
+}
+.action_button{
+    transition: all 0.5s ease-in-out;
+    border: 0px;
+}
+.action_button:hover{
+    /* transform: scale(1.5); */
+    padding: 20px;
+    border: 2px solid rgb(255, 145, 0);
+    box-shadow: 0px 0px 50px 10px #FFE500;
+}
