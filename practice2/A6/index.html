@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <div class="load_box">
+        <div class="load"></div>
+    </div>
+    <header class="p-20">
+        <h1>Heavy HTML Page</h1>
+    </header>
+    <main class="p-20">
+        <div>
+            <h3>Text Content</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
+                massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam
+                felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede
+                justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,
+                venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+                Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
+                Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi
+                vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus
+                eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam
+                nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
+                Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros
+                faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed
+                consequat, leo eget bibendum sodales, augue velit cursus nunc,
+            </p>
+        </div>
+        <div>
+            <h3>Images</h3>
+            <div class="d-flex">
+                <img src="./assets/image/1.jpg" alt="image">
+                <img src="./assets/image/2.jpg" alt="image">
+                <img src="./assets/image/before.jpg" alt="image">
+            </div>
+        </div>
+        <div>
+            <h3>Video</h3>
+            <div class="d-flex">
+                <video src="./assets/video/1.mp4" height="200" controls></video>
+                <video src="./assets/video/2.mp4" height="200" controls></video>
+            </div>
+        </div>
+        <div>
+            <h3>Interactice Forms</h3>
+            <form action="">
+                <div>
+                    <label for="">Name:</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="">Email:</label>
+                    <input type="text">
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div>
+            <h3>Dynamic Content</h3>
+            <p class="dynamic_content"></p>
+            <button onclick="">Add Dynamic Content</button>
+        </div>
+    </main>
+    <footer class="p-20">
+        <h5>Footer Content Here</h5>
+    </footer>
+    <script src="./assets/jquery.min.js"></script>
+</body>
+<script>
+    $(window).on("load", function () {
+        $(".load_box").fadeOut(200)
+    })
+    function add_dynamic_content() {
+        if ($(".dynamic_content").text() == "") {
+            $(".dynamic_content").text(`
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+            `);
+        } else {
+            $(".dynamic_content").text('');
+        }
+    }
+</script>
+
+</html>
