@@ -1,0 +1,26 @@
+/* .map .card {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.map .card .card-img-top {
+    height: 300px;
+    width: 100%;
+}
+
+.map .card .card-body {
+    flex-grow: 1;
+    overflow: auto;
+} */
+.map-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-box img {
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 5px 5px 10px 1px #7390CE;
+}

@@ -1,8 +1,10 @@
-#root{
+#root {
   height: 100%;
   width: 100%;
   position: relative;
+  overflow: overlay;
 }
-Header{
-  position: fixed;
+
+* {
+  box-sizing: border-box;
 }

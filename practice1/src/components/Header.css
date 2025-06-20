@@ -1,4 +1,10 @@
-.header-bg{
-    background: linear-gradient(to left, #FFEBCD, #CD5C5C 20%,#8B7355);
-    backdrop-filter: blur(4px);
+.header-bg {
+    background: linear-gradient(to left, #ffebcdbd, #cd5c5cbd 20%, #daa05abb);
+    backdrop-filter: blur(50px);
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    z-index: 100000;
 }
