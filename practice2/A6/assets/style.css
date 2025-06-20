@@ -14,15 +14,18 @@ body {
 }
 
 header {
+    width: 100%;
     background-color: black;
     color: white;
 }
 
 main {
+    width: 100%;
     flex-grow: 1;
 }
 
 footer {
+    width: 100%;
     background-color: black;
     color: white;
 }
@@ -53,6 +56,7 @@ footer {
     border-top-color: transparent;
     border-left-color: transparent;
     animation: loading 2s linear infinite;
+    z-index: 10000;
 }
 
 @keyframes loading {

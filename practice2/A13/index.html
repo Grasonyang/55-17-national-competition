@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="drop_box"></div>
+
+        <div class="drip" style="--left:10%;--width:150px; --delay:1s"></div>
+        <!-- <div class="drip" style="--left:30%;--width:100px; --delay:0.5s"></div>
+        <div class="drip" style="--left:20%;--width:150px; --delay:2s"></div>
+        <div class="drip" style="--left:50%;--width:200px; --delay:1.6s"></div>
+        <div class="drip" style="--left:70%;--width:10px; --delay:5s"></div>
+        <div class="drip" style="--left:80%;--width:59px; --delay:1s"></div>
+        <div class="drip" style="--left:85%;--width:120px; --delay:2s"></div>
+        <div class="drip" style="--left:10%;--width:55px; --delay:1.7s"></div>
+        <div class="drip" style="--left:67%;--width:190px; --delay:1.3s"></div>
+        <div class="drip" style="--left:53%;--width:50px; --delay:1.1s"></div> -->
+
+        <div class="drop_box"></div>
+    </div>
+    <svg>
+        <defs>
+            <filter id="drop">
+                <feGaussianBlur in="SourceGraphic" result="blur_output" stdDeviation="10" />
+                <feColorMatrix in="blur_output" type="matrix" values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 30 -15" />
+                <!-- <feBlend in="SourceGraphic"></feBlend> -->
+            </filter>
+        </defs>
+    </svg>
+</body>
+<script>
+
+</script>
+
+</html>
