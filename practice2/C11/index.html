@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <input type="number" value="50" min="1">
+    <button onclick="Send()">Send</button>
+    <img src="./assets/image/B.png" alt="">
+    <script src="./assets/jquery.min.js"></script>
+</body>
+<script>
+    Send()
+    function Send() {
+        $.ajax({
+            url: "mosaic.php?call=mosaic",
+            method: "POST",
+            data: {
+                size: $("input[type='number']").val(),
+                image: "./assets/image/B.png"
+            },
+            success: function (e) {
+                console.log(e);
+                $("img").attr("src", e);
+            }
+        })
+    }
+</script>
+
+</html>
