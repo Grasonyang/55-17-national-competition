@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <input type="number" value="1" min="1">
+    <button type="button" onclick="Draw()">Draw</button>
+    <canvas class="container" height="500" width="500">
+
+    </canvas>
+    <script src="./assets/jquery.min.js"></script>
+</body>
+<script>
+    let basic_triangle = {
+        p1: { x: 250, y: 0 },
+        p2: { x: 0, y: 500 },
+        p3: { x: 500, y: 500 },
+    }
+    let canvas = document.querySelector("canvas");
+    let ctx = canvas.getContext("2d");
+    function Draw() {
+        let triangles = Calculate($("input").val() - 1, [basic_triangle]);
+        console.log(triangles);
+        DrawTriangles(triangles);
+    }
+    function Calculate(number, triangles) {
+        // 計算重心迭代
+        if (number <= 0)
+            return triangles;
+        let new_triangles = []
+        for (let i = 0; i < triangles.length; i++) {
+            let triangle = triangles[i];
+            let p1 = triangle.p1;
+            let p2 = triangle.p2;
+            let p3 = triangle.p3;
+            let mid1 = {
+                x: (p1.x + p2.x) / 2,
+                y: (p1.y + p2.y) / 2
+            };
+            let mid2 = {
+                x: (p2.x + p3.x) / 2,
+                y: (p2.y + p3.y) / 2
+            }
+            let mid3 = {
+                x: (p1.x + p3.x) / 2,
+                y: (p1.y + p3.y) / 2
+            }
+            new_triangles.push({
+                p1: p1,
+                p2: mid1,
+                p3: mid3
+            })
+            new_triangles.push({
+                p1: p2,
+                p2: mid1,
+                p3: mid2
+            })
+            new_triangles.push({
+                p1: p3,
+                p2: mid2,
+                p3: mid3
+            })
+        }
+        return Calculate(number - 1, new_triangles);
+    }
+    function DrawTriangles(triangles) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < triangles.length; i++) {
+            let triangle = triangles[i];
+            let p1 = triangle.p1;
+            let p2 = triangle.p2;
+            let p3 = triangle.p3;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.lineTo(p3.x, p3.y);
+            ctx.closePath();
+            ctx.fillStyle = "rgba(0, 0, 0)";
+            ctx.fill();
+        }
+    }
+</script>
+
+</html>
