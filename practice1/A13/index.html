@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="drop"></div>
+    <div class="drop"></div>
+
+    <div class="dot" style="--dot-w: 100px; --left: 10%; --delay: 0.2s"></div>
+    <div class="dot" style="--dot-w: 100px; --left: 20%; --delay: 5s"></div>
+    <div class="dot" style="--dot-w: 100px; --left: 30%; --delay: 3s"></div>
+    <div class="dot" style="--dot-w: 200px; --left: 40%; --delay: 1s"></div>
+    <div class="dot" style="--dot-w: 200px; --left: 50%; --delay: 2s"></div>
+    <div class="dot" style="--dot-w: 250px; --left: 70%; --delay: 0.5s"></div>
+    <div class="dot" style="--dot-w: 250px; --left: 85%; --delay: 4s"></div>
+    <div class="dot" style="--dot-w: 250px; --left: 69%; --delay: 1s"></div>
+
+    <svg style="display: none;">
+        <defs>
+            <filter id="drip">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="allobj" />
+                <feColorMatrix in="" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 40 -15"/>
+            </filter>
+        </defs>
+    </svg>
+</body>
+</html>
