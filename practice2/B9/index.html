@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <img src="./assets/image/B.png" class="image" alt="before">
+        <img src="./assets/image/A.png" class="image after" alt="after">
+        <img src="./assets/image/divider.svg" class="divider" alt="divider">
+    </div>
+    <script src="./assets/jquery.min.js"></script>
+</body>
+<script>
+    $(document).ready(function () {
+        let dragging = false;
+        let container = {
+            left: $(".container").offset().left,
+            width: $(".container").width()
+        }
+        clip(0)
+        $(".divider").on("mousedown", function (e) {
+            dragging = true;
+            $(".divider").css("cursor", "grabbing");
+            e.preventDefault();
+        });
+        $(document).on("mousemove", function (e) {
+            if (!dragging)
+                return;
+
+            let movex; // 滑鼠指標位置
+            movex = e.clientX - container.left
+            if (movex < 0) {
+                movex = 0; // 限制最小值
+            } else if (movex > container.width) {
+                movex = container.width; // 限制最大值
+            }
+            $(".divider").css({
+                left: movex + "px"
+            });
+            clip(movex);
+        })
+        $(document).on('mouseup', function () {
+            dragging = false;
+            $(".divider").css('cursor', 'grab'); // 恢復游標樣式
+        });
+        function clip(movex) {
+            $(".after").css({
+                clipPath: `inset(0 ${container.width - movex}px 0 0)`
+            })
+        }
+    })
+</script>
+
+</html>
