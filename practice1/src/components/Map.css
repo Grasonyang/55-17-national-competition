@@ -25,3 +25,14 @@
     width: 100%;
     box-shadow: 5px 5px 18px 4px rgba(36, 156, 255, 0.945);
 }
+@keyframes flowBackground {
+    0% {
+        background-position: 0% 0%; /* 從最左邊開始 */
+    }
+    50% {
+        background-position: 100% 0%; /* 移動到最右邊 */
+    }
+    100% {
+        background-position: 0% 0%; /* 回到最左邊，實現循環流動 */
+    }
+}

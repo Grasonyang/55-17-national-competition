@@ -39,9 +39,12 @@ function Map() {
             }
         }
     ]
+    
     let cardHover = {
         "transform": "scale(1.05)",
         "boxShadow": " 0px 0px 18px 4px #0080BC",
+        "background": "linear-gradient(to left, #3f87a6, #ebf8e1, #f69d3c)",
+        // "animation": "1s flowBackground linear infinite"
     };
     let linkHover = {
         // "transform": "scale(1.1)",
@@ -63,7 +66,7 @@ function Map() {
                         {
                             sites.map((site) => {
                                 return (
-                                    <div className="card site-card col-12 col-md-5 site-transition" key={site.id}
+                                    <div className="card site-card col-12 col-md-5 site-transition " key={site.id}
                                         onMouseEnter={() => {
                                             setHoversite(site.id)
                                         }}
