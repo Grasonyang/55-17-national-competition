@@ -74,23 +74,26 @@
 - /home get
     - 
 
+
+### AuthController
+ 
 - /login get
     - 登入頁面
-- /login post
+- /api/login post
     - 登入
 
-- /signup get
+- /user/new get
     - 使用者註冊頁面
-- /user/new post
+- /api/user/new post
     - 使用者註冊
 
 - /user/{rules} get
     - header admin token
     - 管理使用者頁面
-- /user/{user_id} post
+- /api/user/{user_id} post
     - header admin token
     - 使用者修改
-- /user/{user_id} delete
+- /api/user/{user_id} delete
     - header admin token
     - 使用者刪除
 

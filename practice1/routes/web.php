@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\AuthController;
+
 Route::get('/', function () {
     return view('home');
 })->name("home");
@@ -21,11 +23,15 @@ Route::get('/home', function () {
     return view('home');
 })->name("home");
 
+// auth
 
-Route::get("/login", function(){
-    return view("login");
-})->name("login");
+Route::get("/login", [AuthController::class, 'login'])->name("login");
+Route::get("/user/new", [AuthController::class, 'signup'])->name("signup");
 
-Route::get("/signup", function(){
-    return view("signup");
-})->name("signup");
+// manage
+
+
+// test
+Route::get("/test", function(){
+    return view('test');
+})->name("test");
