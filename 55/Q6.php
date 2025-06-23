@@ -1,14 +1,16 @@
 <?php
-$stack = [];
-$input = trim(fgets(STDIN));
 // leetcode 32
 // (()(()
+
+$stack = [-1];
+$input = trim(fgets(STDIN));
 $max = 0;
 for($i=0;$i<strlen($input);$i++){
     if($input[$i] == "("){
         $stack[] = $i;
     }else{
-        if(count($stack)===0){
+        if(count($stack)===1){
+            array_pop($stack);
             $stack[] = $i;
         }else{
             array_pop($stack);
