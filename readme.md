@@ -79,12 +79,12 @@
  
 - /login get
     - 登入頁面
-- /api/login post
+- /login post
     - 登入
 
 - /user/new get
     - 使用者註冊頁面
-- /api/user/new post
+- /user/new post
     - 使用者註冊
 
 - /user/{rules} get

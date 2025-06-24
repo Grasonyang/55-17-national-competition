@@ -9,16 +9,16 @@ use Illuminate\Validation\ValidationException;
 use App\Models\User;
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function page_login(Request $request)
     {
         return view('auth.login');
     }
 
-    public function signup(Request $request)
+    public function page_signup(Request $request)
     {
         return view('auth.signup');
     }
-    public function api_login(Request $request)
+    public function user_login(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
@@ -26,9 +26,10 @@ class AuthController extends Controller
         ]);
         $email = $request->input('email');
         $password = $request->input('password');
+        // dd($request);
         if(Auth::attempt(['email' => $email, 'password' => $password])) {
             $user = Auth::user();
-            return redirect()->route("test")->with('message', 'Login successful');
+            return redirect()->route("page.manage")->with('message', 'Login successful');
         } else {
             throw ValidationException::withMessages([
                 'fail' => ['帳號或密碼錯誤'],
@@ -36,7 +37,7 @@ class AuthController extends Controller
         }
     }
 
-    public function api_signup(Request $request)
+    public function user_signup(Request $request)
     {
         $request->validate([
             'first_name' => 'required|string|max:255',
@@ -44,14 +45,27 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
-        $user = User::create([
-            "name"=> $request->input('first_name') . '-' . $request->input('last_name'),
-            "email" => $request->input('email'),
-            "password" => Hash::make($request->input('password')),
-            "access_token" => null,
-            "role" => 'user', // Default role
-        ]);
-        Auth::login($user);
-        return redirect()->route("test")->with('message', 'sign up successful');
+        if(User::where('email', $request->input('email'))->exists()) {
+            throw ValidationException::withMessages([
+                'email' => ['Email already exists'],
+            ]);
+        }else{
+            $user = User::create([
+                "name"=> $request->input('first_name') . '-' . $request->input('last_name'),
+                "email" => $request->input('email'),
+                "password" => Hash::make($request->input('password')),
+                "access_token" => null,
+                "role" => 'user', // Default role
+            ]);
+            // dd($user);
+            Auth::login($user);
+            return redirect()->route("page.manage")->with('message', 'sign up successful');
+        }
     }
+    public function user_logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route("home")->with('message', 'Logout successful');
+    }
+    
 }

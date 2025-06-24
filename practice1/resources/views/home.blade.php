@@ -1,4 +1,8 @@
 @extends("layout")
 @section("content")
-    <h1>Home page</h1>
+    <h1>Hello</h1>
+    @auth
+    <p>歡迎，{{ auth()->user()->name }}</p>
+    @endauth
+
 @endsection
