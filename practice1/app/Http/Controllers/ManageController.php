@@ -111,7 +111,8 @@ class ManageController extends Controller
     public function page_manage_companys(Request $request){
         if(Auth::check()){
             if($request->input("user_id")!==null){
-
+                $user = User::find($request->input("user_id"));
+                return view('manage.companys', ['companys' => $companys, "user"=>$user]);
             }else{
                 $users = User::all();
                 $companys = Company::where('is_active', true)->get();
@@ -202,6 +203,26 @@ class ManageController extends Controller
             return redirect()->route("user.login")->with('error', 'You need to login first');
         }
     }
+    public function api_manage_companys_cancel_stop(Request $request){
+        if(Auth::check()){
+            $company_id = $request->input('cancelStopCompany_company_id');
+            $company = Company::find($company_id);
+            if($company){
+                $company->update([
+                    'is_active' => true,
+                ]);
+                if($request->input("user_type")=="user"){
+                    return redirect()->route("page.manage.companys", ["user_id"=>$company->user->id])->with('message', 'cancel stop company successful');
+                }else{
+                    return redirect()->route("page.manage.companys")->with('message', 'cancel stop company successful');
+                }
+            }else{
+                return redirect()->route("page.manage.companys")->with('error', 'Company not found');
+            }
+        }else{
+            return redirect()->route("user.login")->with('error', 'You need to login first');
+        }
+    }
     public function api_manage_companys_delete(Request $request){
         if(Auth::check()){
             $company_id = $request->input('deleteCompany_company_id');
@@ -220,7 +241,32 @@ class ManageController extends Controller
             return redirect()->route("user.login")->with('error', 'You need to login first');
         }
     }
-
+    public function page_manage_stop_companys(Request $request){
+        if(Auth::check()){
+            if($request->input("user_id")!==null){
+                $user = User::find($request->input("user_id"));
+                return view('manage.stopCompanys', ['companys' => $companys, "user"=>$user]);
+            }else{
+                $companys = Company::where('is_active', false)->get();
+                return view('manage.stopCompanys', ['companys' => $companys]);
+            }
+        }else{
+            return redirect()->route("user.login")->with('error', 'You need to login first');
+        }
+    }
+    public function page_manage_delete_companys(Request $request){
+        if(Auth::check()){
+            if($request->input("user_id")!==null){
+                $user = User::find($request->input("user_id"));
+                return view('manage.deleteCompanys', ['companys' => $companys, "user"=>$user]);
+            }else{
+                $companys = Company::whereNotNull('deleted_at')->get();
+                return view('manage.deleteCompanys', ['companys' => $companys]);
+            }
+        }else{
+            return redirect()->route("user.login")->with('error', 'You need to login first');
+        }
+    }
 
 
 

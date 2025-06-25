@@ -45,8 +45,12 @@ Route::put('/manage/users/edit', [ManageController::class, 'api_manage_users_edi
 Route::delete('/manage/users/delete', [ManageController::class, 'api_manage_users_delete'])->name('api.manage.users.delete');
 // companys
 Route::get('/manage/companys', [ManageController::class, 'page_manage_companys'])->name('page.manage.companys');
+Route::get('/manage/stop/companys', [ManageController::class, 'page_manage_stop_companys'])->name('page.manage.stop.companys');
+Route::get('/manage/delete/companys', [ManageController::class, 'page_manage_delete_companys'])->name('page.manage.delete.companys');
 Route::POST('/manage/companys/add', [ManageController::class, 'api_manage_companys_add'])->name('api.manage.companys.add');
 Route::POST('/manage/companys/stop', [ManageController::class, 'api_manage_companys_stop'])->name('api.manage.companys.stop');
+Route::POST('/manage/companys/cancel/stop', [ManageController::class, 'api_manage_companys_cancel_stop'])->name('api.manage.companys.cancel.stop');
+
 Route::PUT('/manage/companys/edit', [ManageController::class, 'api_manage_companys_edit'])->name('api.manage.companys.edit');
 Route::DELETE('/manage/companys/delete', [ManageController::class, 'api_manage_companys_delete'])->name('api.manage.companys.delete');
 // products

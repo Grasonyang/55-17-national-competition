@@ -2,7 +2,7 @@
 @section("content")
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mt-4">
-            <h2 class="fw-bold text-center">公司管理頁面</h2>
+            <h2 class="fw-bold text-center">停用管理頁面</h2>
             <ul class="nav">
                 <li class="nav-item">
                     <button
@@ -14,13 +14,33 @@
                     </button>
                     @if(isset($user) && $user!==null)
                         @include("manage.form.company.addCompany", ["user"=>$user])
-                    @elseif(isset($users) && $users!==null)
+                    @else
                         @include("manage.form.company.addCompany", ["users"=>$users])
                     @endif
                     
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('page.manage') }}" class="btn btn-secondary">返回</a>
+                    @if(isset($user) && $user!==null)
+                        <a href="{{ route('page.manage.stop.companys', ['user_id'=>$user->id]) }}" class="btn btn-secondary">查看停用公司</a>
+                    @else
+                        <a href="{{ route('page.manage.stop.companys') }}" class="btn btn-secondary">查看停用公司</a>
+                    @endif
+                    
+                </li>
+                <li class="nav-item">
+                    @if(isset($user) && $user!==null)
+                        <a href="{{ route('page.manage.delete.companys', ['user_id'=>$user->id]) }}" class="btn btn-secondary">查看刪除公司</a>
+                    @else
+                        <a href="{{ route('page.manage.delete.companys') }}" class="btn btn-secondary">查看刪除公司</a>
+                    @endif
+                </li>
+                <li class="nav-item">
+                    @if(isset($user) && $user!==null)
+                        <a href="{{ route('page.manage',['user_id'=>$user->id]) }}" class="btn btn-secondary">返回</a>
+                    @else
+                        <a href="{{ route('page.manage') }}" class="btn btn-secondary">返回</a>
+                    @endif
+                    
                 </li>
             </ul>
         </div>
