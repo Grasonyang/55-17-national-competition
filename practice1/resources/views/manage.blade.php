@@ -11,7 +11,12 @@
             @else
                 <a href="{{ route('page.manage.companys') }}" class="btn btn-secondary">公司管理→</a>
             @endif
-            <a href="{{ route('page.manage.products') }}" class="btn btn-warning">產品管理→</a>
+            @if(Auth::check() && Auth::user()->role == "user")
+                <a href="{{ route('page.manage.products', ['user_id'=>Auth::user()->id]) }}" class="btn btn-warning">產品管理→</a>
+            @else
+                <a href="{{ route('page.manage.products') }}" class="btn btn-warning">產品管理→</a>
+            @endif
+            
         </div>
     </div>
 @endsection

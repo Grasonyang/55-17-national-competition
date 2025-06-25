@@ -279,8 +279,16 @@ class ManageController extends Controller
 
     public function page_manage_products(Request $request){
         if(Auth::check()){
-            $companys = Company::where('is_active', true)->get();
-            return view('manage.products', ['companys'=>$companys]);
+            if($request->input("user_id")!==null){
+                // $user = User::find($request->input("user_id"));
+                // $companys = Company::where('is_active', true)->where('user_id',$user->id)->get();
+                Product::where('user')
+                return view('manage.products', ['companys' => $companys, "user"=>$user]);
+            }else{
+                $users = User::all();
+                $companys = Company::where('is_active', true)->get();
+                return view('manage.products', ['users'=>$users, 'companys' => $companys]);
+            }
         }else{
             return redirect()->route("user.login")->with('error', 'You need to login first');
         }

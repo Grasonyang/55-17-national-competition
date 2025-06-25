@@ -50,33 +50,7 @@ Route::get('/manage/delete/companys', [ManageController::class, 'page_manage_del
 Route::POST('/manage/companys/add', [ManageController::class, 'api_manage_companys_add'])->name('api.manage.companys.add');
 Route::POST('/manage/companys/stop', [ManageController::class, 'api_manage_companys_stop'])->name('api.manage.companys.stop');
 Route::POST('/manage/companys/cancel/stop', [ManageController::class, 'api_manage_companys_cancel_stop'])->name('api.manage.companys.cancel.stop');
-
 Route::PUT('/manage/companys/edit', [ManageController::class, 'api_manage_companys_edit'])->name('api.manage.companys.edit');
 Route::DELETE('/manage/companys/delete', [ManageController::class, 'api_manage_companys_delete'])->name('api.manage.companys.delete');
 // products
 Route::get('/manage/products', [ManageController::class, 'page_manage_products'])->name('page.manage.products');
-
-
-
-
-
-
-// Route::get('/companys/{user_id}', [ManageController::class, 'page_manage_companys_user'])->where('user_id', '[0-9]+')->name('page.manage.companys.user');
-// Route::post('/companys/edit', [ManageController::class, 'api_manage_companys_edit'])->name('api.manage.companys.edit');
-// Route::get('/companys/hidden/{user_id}', [ManageController::class, 'page_manage_companys_hidden_user'])->name('page.manage.companys.hidden.user');
-// Route::get('/companys/hidden', [ManageController::class, 'page_manage_companys_hidden'])->name('page.manage.companys.hidden');
-// Route::post('/companys/hidden', [ManageController::class, 'api_manage_companys_hidden'])->name('api.manage.companys.hidden');
-// Route::post('/companys/cancelhidden', [ManageController::class, 'api_manage_companys_cancelhidden'])->name('api.manage.companys.cancelhidden');
-// Route::get('/companys/delete/{user_id}', [ManageController::class, 'page_manage_companys_delete_user'])->name('page.manage.companys.delete.user');
-// Route::get('/companys/delete', [ManageController::class, 'page_manage_companys_delete'])->name('page.manage.companys.delete');
-// Route::post('/companys/delete', [ManageController::class, 'api_manage_companys_delete'])->name('api.manage.companys.delete');
-
-// products
-Route::get('/products', [ManageController::class, 'page_manage_products'])->name('page.manage.products');
-Route::get('/products/{gtin}', [ManageController::class, 'page_manage_products_gtin'])->name('page.manage.products.gtin');
-
-
-// test
-Route::get("/test", function(){
-    return view('test');
-})->name("test");
