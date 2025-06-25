@@ -2,7 +2,7 @@
 @section("content")
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mt-4">
-            <h2 class="fw-bold text-center">停用管理頁面</h2>
+            <h2 class="fw-bold text-center">公司管理頁面</h2>
             <ul class="nav">
                 <li class="nav-item">
                     <button

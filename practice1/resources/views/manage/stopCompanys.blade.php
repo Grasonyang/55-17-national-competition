@@ -2,7 +2,7 @@
 @section("content")
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mt-4">
-            <h2 class="fw-bold text-center">公司管理頁面</h2>
+            <h2 class="fw-bold text-center">停用公司管理頁面</h2>
             <ul class="nav">
                 <li class="nav-item">
                     @if(isset($user) && $user!==null)
@@ -56,6 +56,22 @@
                             <td style="min-width: 200px;">{{ $company->created_at }}</td>
                             <td style="min-width: 450px;">
                                 <button
+                                    class="btn btn-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#showCompanyAdmin-{{ $company->id }}"
+                                >
+                                    查看公司管理者
+                                </button>
+                                @include("manage.form.company.showCompanyAdmin", ["company"=>$company])
+                                <button
+                                    class="btn btn-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#showCompanyDetail-{{ $company->id }}"
+                                >
+                                    查看公司詳細資料
+                                </button>
+                                @include("manage.form.company.showCompanyDetail", ["company"=>$company])
+                                <button
                                     class="btn btn-danger"
                                     data-bs-toggle="modal"
                                     data-bs-target="#cancelStopCompany-{{ $company->id }}"
@@ -64,7 +80,7 @@
                                 </button>
                                 @if(isset($user) && $user!==null)
                                     @include("manage.form.company.cancelStopCompany", ["company"=>$company, "user"=>$user])
-                                @elseif(isset($users) && $users!==null)
+                                @else
                                     @include("manage.form.company.cancelStopCompany", ["company"=>$company])
                                 @endif
                             </td>

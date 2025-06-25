@@ -75,7 +75,7 @@
                                     刪除用戶
                                 </button>
                                 @include("manage.form.user.deleteUser", ['user' => $user])
-                                <!-- <a href="{{ route('page.manage.companys.user',['user_id'=>$user->id]) }}" class="btn btn-primary">管理公司</a> -->
+                                <a href="{{ route('page.manage.companys',['user_id' => $user->id]) }}" class="btn btn-primary">管理該用戶的公司</a>
                             </td>
                             
                         </tr>

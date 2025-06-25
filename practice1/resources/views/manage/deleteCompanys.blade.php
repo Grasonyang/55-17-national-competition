@@ -2,11 +2,11 @@
 @section("content")
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mt-4">
-            <h2 class="fw-bold text-center">停用公司管理頁面</h2>
+            <h2 class="fw-bold text-center">刪除公司檢視頁面</h2>
             <ul class="nav">
                 <li class="nav-item">
-                    @if($addType=='user')
-                        <a href="{{ route('page.manage.companys.user', ['user_id'=>$user_id]) }}" class="btn btn-secondary">返回</a>
+                    @if(isset($user) && $user!==null)
+                        <a href="{{ route('page.manage.companys',['user_id'=>$user->id]) }}" class="btn btn-secondary">返回</a>
                     @else
                         <a href="{{ route('page.manage.companys') }}" class="btn btn-secondary">返回</a>
                     @endif
@@ -37,7 +37,6 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>權限管理者</th>
                         <th>公司名稱</th>
                         <th>公司狀態</th>
                         <th>建立時間</th>
@@ -48,22 +47,22 @@
                     @foreach ($companys as $company)
                         <tr>
                             <td>{{ $company->id }}</td>
-                            <td>{{ $company->user->name }}</td>
                             <td style="min-width: 150px;">{{ $company->company_name }}</td>
-                            <td class="text-danger">已刪除</td>
+                            @if($company->is_active)
+                                <td class="text-success">啟用中</td>
+                            @else
+                                <td class="text-danger">停用中</td>
+                            @endif
                             <td style="min-width: 200px;">{{ $company->created_at }}</td>
                             <td style="min-width: 450px;">
-                                @if($addType=='admin')
-                                    <button
-                                        class="btn btn-primary"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#showCompanyAdmin-{{ $company->id }}"
-                                    >
-                                        查看公司管理者
-                                    </button>
-                                    @include("manage.form.showCompanyAdmin",['user'=>$company->user, 'company'=>$company])
-                                @endif
-                                
+                                <button
+                                    class="btn btn-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#showCompanyAdmin-{{ $company->id }}"
+                                >
+                                    查看公司管理者
+                                </button>
+                                @include("manage.form.company.showCompanyAdmin", ["company"=>$company])
                                 <button
                                     class="btn btn-primary"
                                     data-bs-toggle="modal"
@@ -71,7 +70,7 @@
                                 >
                                     查看公司詳細資料
                                 </button>
-                                @include("manage.form.showCompanyDetail",['user'=>$company->user, 'company'=>$company])
+                                @include("manage.form.company.showCompanyDetail", ["company"=>$company])
                             </td>
                         </tr>
                     @endforeach

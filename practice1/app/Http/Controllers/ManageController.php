@@ -112,6 +112,7 @@ class ManageController extends Controller
         if(Auth::check()){
             if($request->input("user_id")!==null){
                 $user = User::find($request->input("user_id"));
+                $companys = Company::where('is_active', true)->where('user_id',$user->id)->get();
                 return view('manage.companys', ['companys' => $companys, "user"=>$user]);
             }else{
                 $users = User::all();
@@ -245,6 +246,7 @@ class ManageController extends Controller
         if(Auth::check()){
             if($request->input("user_id")!==null){
                 $user = User::find($request->input("user_id"));
+                $companys = Company::where('is_active', false)->where('user_id',$user->id)->get();
                 return view('manage.stopCompanys', ['companys' => $companys, "user"=>$user]);
             }else{
                 $companys = Company::where('is_active', false)->get();
@@ -258,9 +260,10 @@ class ManageController extends Controller
         if(Auth::check()){
             if($request->input("user_id")!==null){
                 $user = User::find($request->input("user_id"));
+                $companys = Company::onlyTrashed('deleted_at')->where('user_id',$user->id)->get();
                 return view('manage.deleteCompanys', ['companys' => $companys, "user"=>$user]);
             }else{
-                $companys = Company::whereNotNull('deleted_at')->get();
+                $companys = Company::onlyTrashed('deleted_at')->get();
                 return view('manage.deleteCompanys', ['companys' => $companys]);
             }
         }else{
