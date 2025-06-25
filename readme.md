@@ -98,23 +98,21 @@
     - 使用者刪除
 
 
+- manage/companys
+    - with company_id
+    - none company_id
+    
+
+
 
 - /products get
-    - header admin or company_admin token
-- /products/{gtin} get
-    - header admin or company_admin token
-    - 管理產品頁面
-- /products/{gtin}/delete get、post
-    - header admin or company_admin token
-    - 產品刪除
-        - admin 直接刪除
-        - company_admin 軟刪除
-- /products/{gtin}/update get、post
-    - header admin or company_admin token
-    - 管理修改
-- /products/new get
-    - header admin or company_admin token
-    - 產品新增頁面
-- /products/new post
-    - header admin or company_admin token
-    - 產品新增
+    - 列出所有products
+- /products/{gitn}
+    - 進入特定商品的管理頁面
+    - 前一頁/products
+- /products/{company_id}
+    - 列出特定公司的products
+    - 前一頁/page_manage_companys_user
+- /products/{company_id}/{gtin}
+    - 進入特定公司特定商品的管理頁面
+    - 前一頁/page_manage_companys_user

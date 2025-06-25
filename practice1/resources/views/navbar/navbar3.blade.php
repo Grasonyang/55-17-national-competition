@@ -17,6 +17,15 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        管理
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('page.manage.companys') }}">公司管理頁面</a></li>
+                        <li><a class="dropdown-item" href="{{ route('page.manage.products') }}">產品管理頁面</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         使用者
                     </a>
                     <ul class="dropdown-menu">

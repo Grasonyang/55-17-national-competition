@@ -21,3 +21,5 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 // Route::post('/login', [AuthController::class, 'api_login'])->name('api.login');
 // Route::post('/user/new', [AuthController::class, 'api_signup'])->name('api.signup');
+
+use App\Http\Controllers\ManageController;
