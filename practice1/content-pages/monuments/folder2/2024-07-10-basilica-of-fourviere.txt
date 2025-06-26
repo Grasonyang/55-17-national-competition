@@ -1,0 +1,12 @@
+---
+title: Basilica of Fourvière
+tags: church, hilltop, city-view
+cover: basilica.jpg
+summary: An iconic basilica overlooking Lyon with panoramic city views.
+---
+
+Located on Fourvière hill, this basilica is one of Lyon’s most famous landmarks.
+
+basilica.jpg
+
+The view from the top is breathtaking, especially at sunset.
