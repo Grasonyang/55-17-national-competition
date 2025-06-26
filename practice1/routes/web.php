@@ -12,7 +12,19 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// 首頁 - 所有內容總覽
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\PageController;
+Route::get('/', [PageController::class, 'index'])->name('index');
+
+// Route::get('/XX_module_c/', [PageController::class, 'index'])->name('index');
+
+Route::get('/heritages/{path?}', [PageController::class, 'handle'])
+    ->where('path', '.*')
+    ->name('handle');
+
+Route::get('/tags/{tag}', [PageController::class, 'tag'])->name('tag');
+
+Route::get('/search', [PageController::class, 'search'])->name('search');
+
+Route::get('/test', [PageController::class, 'test'])->name('test');
