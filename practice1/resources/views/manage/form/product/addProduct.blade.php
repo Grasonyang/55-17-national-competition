@@ -1,24 +1,30 @@
 <div class="modal fade" id="addProduct" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" method="POST">
+            <form action="{{ route('page.manage.products.add') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">新增產品</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @if($companys!==null)
+                    @if(isset($companys))
                         <label for="addProduct_company_id" class="form-label">公司</label>
-                        <select name="user_id" class="form-select form-select-lg mb-3" id="addProduct_company_id">
+                        <select class="form-select form-select-lg mb-3" name="addProduct_company_id" id="addProduct_company_id">
                             @foreach ($companys as $company)
-                                <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                             @endforeach
                         </select>
-                    @elseif($company!==null)
+                    @elseif(isset($company))
                         <input type="hidden" value="{{ $company->id }}" name="addProduct_company_id">
                     @endif
-                    
+                    @if(isset($user))
+                        <input type="hidden" value="{{ $user->id }}" name="addProduct_user_id">
+                    @endif
+                    <div class="mb-3">
+                        <label for="addProduct_image" class="form-label">產品照片</label>
+                        <input type="file" class="form-control" id="addProduct_image" name="addProduct_image">
+                    </div>
                     <div class="mb-3">
                         <label for="addProduct_name" class="form-label">產品名稱</label>
                         <input type="text" class="form-control" id="addProduct_name" name="addProduct_name">

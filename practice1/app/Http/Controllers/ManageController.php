@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\Product;
-
-
+use App\Services\GTIN;
+use App\Models\Product_Image;
 class ManageController extends Controller
 {
     public function page_manage(Request $request){
@@ -280,20 +280,97 @@ class ManageController extends Controller
     public function page_manage_products(Request $request){
         if(Auth::check()){
             if($request->input("user_id")!==null){
-                // $user = User::find($request->input("user_id"));
-                // $companys = Company::where('is_active', true)->where('user_id',$user->id)->get();
-                Product::where('user')
-                return view('manage.products', ['companys' => $companys, "user"=>$user]);
+                $user = User::find($request->input("user_id"));
+                if($request->input("company_id")!==null){
+                    $company = Company::find($request->input("company_id"));
+                    if($company && $company->user_id == $user->id){
+                        $products = Product::with('product_image')->where('company_id', $company->id)->get();
+                        return view('manage.products', ['user'=>$user, 'company'=>$company,'products' => $products]);
+                    }else{
+                        return redirect()->route("page.manage.products")->with('error', 'Company not found or does not belong to the user');
+                    }
+                }else{
+                    $companys = Company::where('user_id', $request->input("user_id"))->get();
+                    $products = Product::with('product_image')->whereIn('company_id', $companys->pluck('id'))->get();
+                    return view('manage.products', ['user'=>$user, 'companys'=>$companys,'products' => $products]);
+                }
             }else{
-                $users = User::all();
-                $companys = Company::where('is_active', true)->get();
-                return view('manage.products', ['users'=>$users, 'companys' => $companys]);
+                if($request->input("company_id")!==null){
+                    $company = Company::find($request->input("company_id"));
+                    $products = Product::with('product_image')->where('company_id', $company->id)->get();
+                    return view('manage.products', ['products' => $products, 'company'=>$company]);
+                }else{
+                    $companys = Company::all();
+                    $products = Product::with('product_image')->all();
+                    return view('manage.products', ['products' => $products, "companys"=>$companys]);
+                }
             }
         }else{
             return redirect()->route("user.login")->with('error', 'You need to login first');
         }
     }
-
+    public function page_manage_products_add(Request $request){
+        if(Auth::check()){
+            $gtin = new GTIN();
+            $gtin_code = $gtin->generate();
+            // dd($request->all());
+            if($request->input("addProduct_user_id")!==null){
+                $user = User::find($request->input("addProduct_user_id"));
+                Product::create([
+                    'gtin'=> $gtin_code,
+                    'company_id'=> $request->input("addProduct_company_id"),
+                    'name'=>$request->input('addProduct_name'),
+                    'name_in_french'=>$request->input('addProduct_name_in_french'),
+                    'description'=>$request->input('addProduct_description'),
+                    'description_in_french'=>$request->input('addProduct_description_in_french'),
+                    'brand'=>$request->input('addProduct_brand'),
+                    'origin'=>$request->input('addProduct_origin'),
+                    'gross_weight'=>$request->input('addProduct_gross_weight'),
+                    'net_content_weight'=>$request->input('addProduct_net_content_weight'),
+                    'weight_unit'=>$request->input('addProduct_weight_unit'),
+                ]);
+                if ($request->hasFile('addProduct_image')) {
+                    $file = $request->file('addProduct_image');
+                    $path = $file->store('product_image', 'public');
+                } else {
+                    $path = 'product_image/default.jpg';
+                }
+                Product_Image::create([
+                    'image_path' => $path,
+                    'gtin_id' => $gtin_code,
+                ]);
+                return redirect()->route("page.manage.products", ["user_id"=>$user->id, "company_id"=>$request->input("addProduct_company_id")])->with('message', 'add product successful');
+            }else{
+                Product::create([
+                    'gtin'=> $gtin_code,
+                    'company_id'=> $request->input("addProduct_company_id"),
+                    'name'=>$request->input('addProduct_name'),
+                    'name_in_french'=>$request->input('addProduct_name_in_french'),
+                    'description'=>$request->input('addProduct_description'),
+                    'description_in_french'=>$request->input('addProduct_description_in_french'),
+                    'brand'=>$request->input('addProduct_brand'),
+                    'origin'=>$request->input('addProduct_origin'),
+                    'gross_weight'=>$request->input('addProduct_gross_weight'),
+                    'net_content_weight'=>$request->input('addProduct_net_content_weight'),
+                    'weight_unit'=>$request->input('addProduct_weight_unit'),
+                ]);
+                if ($request->hasFile('addProduct_image')) {
+                    $file = $request->file('addProduct_image');
+                    $path = $file->store('product_image', 'public');
+                    // dd($path);
+                } else {
+                    $path = 'product_image/default.jpg';
+                }
+                Product_Image::create([
+                    'image_path' => $path,
+                    'gtin_id' => $gtin_code,
+                ]);
+                return redirect()->route("page.manage.products", ["company_id"=>$request->input("addProduct_company_id")])->with('message', 'add product successful');
+            }
+        }else{
+            return redirect()->route("user.login")->with('error', 'You need to login first');
+        }
+    }
 
 
 

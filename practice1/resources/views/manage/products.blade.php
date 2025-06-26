@@ -12,15 +12,28 @@
                         data-bs-target="#addProduct">
                         新增產品
                     </button>
-                    @if($companys!==null)
-                        @include('manage.form.product.addProduct', ["companys"=>$companys])
-                    @elseif($company!==null)
-                        @include('manage.form.product.addProduct', ["company"=>$company])
+                    @if(isset($user))
+                        @if(isset($company))
+                            @include("manage.form.product.addProduct", ["user"=>$user, "company"=>$company])
+                        @else
+                            @include("manage.form.product.addProduct", ["user"=>$user, "companys"=>$companys])
+                        @endif
+                    @elseif(!isset($user))
+                        @if(isset($company))
+                            @include("manage.form.product.addProduct", ["company"=>$company])
+                        @else
+                            @include("manage.form.product.addProduct", ["companys"=>$companys])
+                        @endif
                     @endif
                 </li>
                 <li class="nav-item">
                     <a href="" class="btn btn-primary">查看停用產品</a>
                 </li>
+                @if(!isset($user))
+                <li class="nav-item">
+                    <a href="" class="btn btn-primary">查看刪除產品</a>
+                </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('page.manage') }}" class="btn btn-secondary">返回</a>
                 </li>
@@ -50,13 +63,40 @@
                 <thead>
                     <tr>
                         <th style="min-width:100px">GTIN</th>
+                        <th style="min-width:200px;">所屬公司</th>
                         <th style="min-width:200px;">名稱</th>
                         <th style="min-width:200px;max-width:500px;overflow-x:auto">描述</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    @foreach($products as $product)
+                        <tr>
+                            <td>{{ $product->gtin }}</td>
+                            <td>{{ $product->company->company_name }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showProduct-{{ $product->id }}">查看產品詳細資料</button>
+                                @include("manage.form.product.showProduct", ["product"=>$product])
+                                <button class="btn btn-primary">修改產品</button>
+                                @if(isset($user))
+                                    @if(isset($company))
+                                        @include("manage.form.product.addProduct", ["user"=>$user, "company"=>$company])
+                                    @else
+                                        @include("manage.form.product.addProduct", ["user"=>$user, "companys"=>$companys])
+                                    @endif
+                                @elseif(!isset($user))
+                                    @if(isset($company))
+                                        @include("manage.form.product.addProduct", ["company"=>$company])
+                                    @else
+                                        @include("manage.form.product.addProduct", ["companys"=>$companys])
+                                    @endif
+                                @endif
+                            </td>
+                            
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Company;
 use App\Models\Product_Image;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {

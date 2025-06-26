@@ -54,3 +54,4 @@ Route::PUT('/manage/companys/edit', [ManageController::class, 'api_manage_compan
 Route::DELETE('/manage/companys/delete', [ManageController::class, 'api_manage_companys_delete'])->name('api.manage.companys.delete');
 // products
 Route::get('/manage/products', [ManageController::class, 'page_manage_products'])->name('page.manage.products');
+Route::post('/manage/products/add', [ManageController::class, 'page_manage_products_add'])->name('page.manage.products.add');

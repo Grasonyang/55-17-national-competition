@@ -10,7 +10,9 @@ class Product_Image extends Model
 {
     use HasFactory;
     protected $table = 'product_images';
+    public $timestamps = false;
     protected $fillable = [
+        'gtin_id',
         'image_path',
     ];
     public function product(){
