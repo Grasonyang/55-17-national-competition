@@ -61,4 +61,29 @@ class ListItem{
         }
         return $everyFolderPath;
     }
+    public static function getAllTags(){
+        $path = "content-pages/";
+        $pages = [];
+        $folders = [$path];
+        while (count($folders) > 0) {
+            $currentFolder = array_shift($folders);
+            $files = self::getFile($currentFolder);
+            foreach ($files as $file) {
+                $content = file_get_contents(base_path($currentFolder . $file['name']));
+                $thisRoundTags = ParseText::getTags($content);
+                if(!empty($thisRoundTags)){
+                    foreach ($thisRoundTags as $tag) {
+                        $tag = trim($tag);
+                        $pages[$tag][] = $currentFolder . $file['name'];
+                    }
+                }
+            }
+            // Add subfolders to the queue
+            $subfolders = self::getFolder($currentFolder);
+            foreach ($subfolders as $subfolder) {
+                $folders[] = rtrim($currentFolder, "/") . "/" . $subfolder . "/";
+            }
+        }
+        return $pages;
+    }
 }

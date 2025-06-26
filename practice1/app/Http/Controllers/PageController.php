@@ -75,7 +75,27 @@ class PageController extends Controller
         }
     }
     public function tag(Request $request, $tag){
-
+        $pages = ListItem::getAllTags();
+        $needPages = [];
+        if(!isset($pages[$tag])){
+            return view('tag', [
+                "title"=>"標籤: ".$tag,
+                "pages"=>[],
+            ]);
+        }
+        // dd($pages[$tag]);
+        foreach ($pages[$tag] as $page) {
+            $needPages[] = [
+                "path"=>$page,
+                "name"=>ParseText::getFileName($page),
+                "title"=>ParseText::getTitle($page, base_path("/")),
+                "summary"=>ParseText::getSummary($page, base_path("/")),
+            ];
+        }
+        return view('tag', [
+            "title"=>"標籤: ".$tag,
+            "pages"=>$needPages,
+        ]);
     }
     public function search(Request $request){
 

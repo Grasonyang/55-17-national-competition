@@ -26,5 +26,3 @@ Route::get('/heritages/{path?}', [PageController::class, 'handle'])
 Route::get('/tags/{tag}', [PageController::class, 'tag'])->name('tag');
 
 Route::get('/search', [PageController::class, 'search'])->name('search');
-
-Route::get('/test', [PageController::class, 'test'])->name('test');

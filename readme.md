@@ -10,4 +10,4 @@
     - ubuntu ln -s content-pages/images public/images
 
 ### 問題
-- 搜尋
+- 搜尋高亮顯示

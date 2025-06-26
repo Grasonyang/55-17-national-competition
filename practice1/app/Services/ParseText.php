@@ -54,7 +54,9 @@ class ParseText{
     }
     public static function getTitle($fileName, $filePath): string
     {
-        $content = file_get_contents($filePath."/".$fileName);
+        
+        $fullPath = $filePath."/".$fileName;
+        $content = file_get_contents($fullPath);
         if(preg_match('/^(.*?)title:(.*?)$/mis',$content, $matches)){
             $draft = $matches[2];
             return trim($draft);
@@ -135,4 +137,5 @@ class ParseText{
             return "";
         }
     }
+    
 }
