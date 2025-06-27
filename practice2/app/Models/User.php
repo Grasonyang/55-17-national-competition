@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Company; // Assuming Compabny is a typo and should be Company
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -17,10 +19,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -30,7 +34,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -39,6 +42,9 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        // 'email_verified_at' => 'datetime',
     ];
+    public function companys(){
+        return $this->belongsToMany(Company::class, 'company_user', 'user_id', 'company_id');
+    }
 }
