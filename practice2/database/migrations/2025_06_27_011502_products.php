@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->string('gtin', 14)->primary();
-            $table->foreignId('company_id')->constrained('companys')->onDelete('cascade');
+            $table->foreignId('company_id')->constrained('companys')->onDelete('cascade')->default(null)->nullable();
             $table->string('name')->nullable();
             $table->string('name_in_french')->nullable();
             $table->string('description', 1000)->nullable();

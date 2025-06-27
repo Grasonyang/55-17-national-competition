@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Company;
 use App\Models\ProductImage;
@@ -10,7 +11,10 @@ use App\Models\ProductImage;
 class Product extends Model
 {
     use HasFactory, SoftDeletes;
+    
     protected $table = 'products';
+    protected $primaryKey = 'gtin';
+    public $incrementing = false;
     protected $fillable = [
         'gtin',
         'company_id',

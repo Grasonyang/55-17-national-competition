@@ -12,7 +12,7 @@
                 <input type="password" class="form-control" id="login-password" name="password">
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
-            <button type="button" class="btn btn-secondary" onclick="{{ route('home') }}">Cancel</button>
+            <a href="{{ route('home') }}" class="btn btn-secondary" onclick="{{ route('home') }}">Cancel</a>
         </form>
     </div>
 @endsection

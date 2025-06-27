@@ -26,7 +26,7 @@
             使用者操作
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">登出</a></li>
+            <li><a class="dropdown-item" href="{{ route('api.logout') }}">登出</a></li>
           </ul>
         </li>
       </ul>

@@ -5,14 +5,7 @@
             <h1>管理公司</h1>
             <ul class="nav">
                 <li>
-                    @include("manage.admin.form.addCompany", [
-                        "title"=>"新增公司",  
-                        "action"=>route("api.admin.manage.company.add"),
-                        "method"=>"POST",
-                    ])
-                </li>
-                <li>
-                    <a href="{{ route('admin.manage.stop.company') }}" class="btn btn-primary">查看停用公司</a>
+                    <a href="{{ route('admin.manage.company') }}" class="btn btn-primary">返回</a>
                 </li>
             </ul>
         </div>
@@ -39,18 +32,6 @@
                             <td>
                                 @include("manage.admin.form.showCompany", [
                                     "title"=>"查看公司詳細資訊",
-                                    "company"=>$company,
-                                ])
-                                @include("manage.admin.form.editCompany", [
-                                    "title"=>"修改公司",  
-                                    "action"=>route("api.admin.manage.company.edit"),
-                                    "method"=>"PUT",
-                                    "company"=>$company,
-                                ])
-                                @include("manage.admin.form.stopCompany", [
-                                    "title"=>"停用公司",  
-                                    "action"=>route("api.admin.manage.company.stop"),
-                                    "method"=>"PUT",
                                     "company"=>$company,
                                 ])
                                 

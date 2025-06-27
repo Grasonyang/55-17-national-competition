@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('assets/bootstrap.css') }}">
     <title>Document</title>
 </head>
-<body>
+<body style="width:100vw">
     <header>
         @if(Auth::check())
             @if(Auth::user()->role=="admin")
