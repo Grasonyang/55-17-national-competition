@@ -5,6 +5,7 @@
 - practice2 (2025/06/27)
     - 考3小時，未完成 70%
     - 9小時，未完成 user route
+        - product manage 不熟
     
 
 
