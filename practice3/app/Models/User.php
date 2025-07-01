@@ -46,4 +46,17 @@ class User extends Authenticatable
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+    public function isAdmin(){
+        return $this->role==='admin';
+    }
+    public function isUser(){
+        return $this->role==='admin';
+    }
+    public function canManage($resource=null){
+        if(isAdmin())
+            return true;
+        else{
+            return $resource && $this->id === $resource->user_id;
+        }
+    }
 }
