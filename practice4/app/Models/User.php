@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use App\Models\Company;
+use DateTimeInterface;
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        "access_token",
+        "role",
     ];
 
     /**
@@ -30,7 +33,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'access_token',
     ];
 
     /**
@@ -39,6 +42,24 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'name'=>'string',
+        'email'=>'string',
+        'password'=>'string',
+        "access_token"=>'string',
+        'role'=>'string',
+        'created_at'=>'datetime',
+        'updated_at'=>'datetime',
     ];
+    protected function serializeDate(DateTimeInterface $date): string
+    {
+        return $date->format('Y-m-d\TH:i:s');
+    }
+    public function genAccessToken(){
+        $this->access_token = hash('sha256', $this->email);
+        $this->save();
+        return $this->access_token;
+    }
+    public function company(){
+        return $this->hasMany(Company::class);
+    }
 }

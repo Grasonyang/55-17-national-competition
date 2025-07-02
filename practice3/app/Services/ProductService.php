@@ -76,7 +76,7 @@ class ProductService{
     {
         try{
             $request->validate($this->validate, $this->errors);
-            
+            $request->validate($this->validate, $this->errors);
             // 創建或更新產品
             $productData = $request->except(['image_urls', 'upload_image_urls']);
             $product = Product::updateOrCreate(['gtin' => $request->input('gtin')], $productData);

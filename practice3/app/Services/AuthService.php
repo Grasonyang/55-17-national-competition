@@ -34,7 +34,7 @@ class AuthService{
             ], $errors_code[$message] ?? 500);
         }
     }
-    public function logout(Request $request){
+    public function register(Request $request){
         try{
             $request->validate([
                 "email"=>"requeired|email|unique:users,email",
