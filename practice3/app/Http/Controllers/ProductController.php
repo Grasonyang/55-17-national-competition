@@ -2,17 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Services\ProductSerivce;
+
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    protected $ProductSerivce;
+    public function __construct(ProductSerivce $service){
+        $ProductSerivce = $service;
+        $this->middleware('auth');
+        $this->middleware('admin')->except(['index', 'show']);
+        $this->middleware('user')->only(['index', 'show']);
+    }
+
     public function index()
     {
-        //
+        
     }
 
     /**

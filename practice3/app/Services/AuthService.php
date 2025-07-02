@@ -9,7 +9,7 @@ use App\Models\User;
 
 class AuthService{
     protected $errors = [
-        "*.requied" =>"MSG_MISSING_FIELD",
+        "*.required" =>"MSG_MISSING_FIELD",
         "*.email" =>"MSG_WRONG_DATA_TYPE",
         "*.min" =>"MSG_PASSWORD_NOT_SECURE",
         '*.email.unique' =>"MSG_USER_EXISTS",
