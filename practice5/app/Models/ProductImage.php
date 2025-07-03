@@ -39,6 +39,6 @@ class ProductImage extends Model
         'deleted_at' => 'datetime',
     ];
     public function product(){
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class,'gtin','gtin');
     }
 }

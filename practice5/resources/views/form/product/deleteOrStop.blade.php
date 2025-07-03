@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#{{ $type }}-{{ $company->id ?? '' }}">
-  {{ $title }}公司
+  {{ $title }}產品
 </button>
 
 <!-- Modal -->

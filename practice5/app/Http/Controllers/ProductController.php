@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Company;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
@@ -33,6 +34,7 @@ class ProductController extends Controller
         $company_id = $request->input('company_id');
         // dd($company_id );
         try{
+            // dd($request->all());
             $request->validate([
                 "name"=>"required|string",
                 "name_in_f"=>"required|string",
@@ -44,14 +46,17 @@ class ProductController extends Controller
                 "net_content_weight"=>"required|integer",
                 "unit"=>"required|string",
                 "images"=>"array",
-                "images.*"=>"image|mimes:jpeg,png,jpg,gif,svg",
+                "images.*"=>"string",
                 "file"=>"array",
-                "files.*"=>"image|mimes:jpeg,png,jpg,gif,svg",
+                "file.*"=>"image|mimes:jpeg,png,jpg,gif,svg",
             ]);
+            
             if($product_id===null){
+                // dd($request->all());
                 if($company_id===null){
                     abort(400,'No Company id');
                 }
+
                 $product = Product::create([
                     'gtin'=>uniqid(),
                     'company_id'=>$company_id,
@@ -65,10 +70,12 @@ class ProductController extends Controller
                     'net_content_weight'=>$request->input('net_content_weight'),
                     'unit'=>$request->input('unit'),
                 ]);
-                if($request->hasFile('files')){
-                    foreach($request->file('files') as $file){
-                        $path = $file->store('products/'.$product->gtin, 'public');
-                        $product->files()->create([
+                if($request->hasFile('file')){
+                    foreach($request->file('file') as $file){
+
+                        
+                        $path = $file->store('products/', 'public');
+                        $product->images()->create([
                             'gtin'=>$product->gtin,
                             'image_url'=>asset('storage/'.$path),
                         ]);
@@ -77,7 +84,7 @@ class ProductController extends Controller
                 return redirect()->route('product.show', ['company_id'=>$company_id ?? null]);
             }else{
                 $product = Product::find($product_id);
-                if($product->company_id !== $company_id){
+                if("$product->company_id" !== $company_id){
                     abort(403, 'Unauthorized action.');
                 }
                 $product->update([
@@ -92,23 +99,26 @@ class ProductController extends Controller
                     'unit'=>$request->input('unit'),
                 ]);
                 $product->images()->delete();
-                if($request->hasFile('images')){
-                    foreach($request->file('images') as $image){
+                // dd($request->all());
+                if($request->input('images')){
+                    foreach($request->input('images') as $image){
                         $product->images()->create([
                             'gtin'=>$product->gtin,
                             'image_url'=>$image
                         ]);
                     }
                 }
-                if($request->hasFile('files')){
-                    foreach($request->file('files') as $file){
+                
+                if($request->hasFile('file')){
+                    foreach($request->file('file') as $file){
                         $path = $file->store('products/'.$product->gtin, 'public');
-                        $product->files()->create([
+                        $product->images()->create([
                             'gtin'=>$product->gtin,
                             'image_url'=>asset('storage/'.$path),
                         ]);
                     }
                 }
+                // dd($request->all());
                 return redirect()->route('product.show', ['company_id'=>$company_id ?? null]);
             }
         }catch(\Exception $e){
@@ -150,22 +160,26 @@ class ProductController extends Controller
     {
         $company_id = $request->input('company_id');
         if($company_id!==null){
+           
             if(Auth::user()->role==="admin"){
                 $products = Product::where('status', 0)->where('company_id', $company_id)->get();
-                return view('product', ["company_id"=>$company_id, "companies"=>null,"products"=>$products]);
+                return view('stop_product', ["company_id"=>$company_id, "companies"=>null,"products"=>$products]);
             }else{
                 $products =Product::where('status', 0)->where('company_id', $company_id)->get();
-                return view('product', ["company_id"=>$company_id,"companies"=>null, "products"=>$products]);
+                return view('stop_product', ["company_id"=>$company_id,"companies"=>null, "products"=>$products]);
             }
         }else{
+             
             if(Auth::user()->role==="admin"){
                 $companies = Company::where('status', 0)->get();
                 $products = Product::where('status', 0)->get();
-                return view('product', ["companies"=>$companies, "products"=>$products]);
+                // dd($products);
+                return view('stop_product', ["companies"=>$companies, "products"=>$products]);
             }else{
+                // dd(1);
                 $companies = Company::where('status', 0)->where('user_id', Auth::user()->id)->get();
                 $products = Product::where('status', 0)->whereIn('company_id', $companies->pluck('id'))->get();
-                return view('product', ["company_id"=>null, "companies"=>$companies, "products"=>$products]);
+                return view('stop_product', ["company_id"=>null, "companies"=>$companies, "products"=>$products]);
             }
         }
     }
@@ -196,10 +210,68 @@ class ProductController extends Controller
             abort(403, 'Unauthorized action.');
         }
         if(Auth::user()->role=="admin"){
+            $product->images()->delete();
             $product->forceDelete();
         }else{
             $product->delete();
         }
         return redirect()->route('product.show', ['company_id'=>$company_id ?? null]);
     }
+    public function getAllProducts(Request $request)
+    {
+        $per_page = $request->input('per_page', 10);
+        $page = $request->input('page', 1);
+
+        $products = Product::where('status', 1)->paginate($per_page, ['*'], 'page', $page);
+        return response()->json($products);
+    }
+    public function getProducts(Request $request, $gtin)
+    {
+        // dd($gtin);
+        $products = Product::where('status', 1)->where('gtin',$gtin)->first();
+        // dd($products);
+        return response()->json($products);
+    }
+    public function checkGtins(Request $request)
+    {
+        $gtins = $request->input('gtin', []);
+        // dd($gtins);
+        if(empty($gtins)){
+            return response()->json(['error' => 'No GTINs provided'], 400);
+        }
+        $s=0;
+        $result = [];
+        foreach($gtins as $gtin){
+            $product = Product::where('gtin', $gtin)->where('status', 1)->first();
+            if($product){
+                $s++;
+                $result[]=[
+                    $gtin=>"valid!!!",
+                ];
+            }else{
+                $result[]=[
+                    $gtin=>"Invalid!!!",
+                ];
+            }
+        }
+        return response()->json([
+            "success"=>true,
+            "result"=>[
+                "gtins"=>$result,
+                "all_valid"=> $s === count($gtins),
+            ]
+        ]);
+    }
+    public function showPublicProduct(Request $request,$gtin){
+        $product = Product::where('gtin', $gtin)->where('status', 1)->first();
+        // dd($product);
+        if(!$product){
+            abort(404, 'Product not found');
+        }
+        // dd($product);
+        $images = $product->images()->first();
+        return view('publicProduct', ['product'=>$product, 'images'=>$images]);
+    }
+
 }
+

@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pe-5 me-5">
         <li class="nav-item">
-          <a class="nav-link" href="#">公開 GTIN 批量驗證頁面</a>
+          <a class="nav-link" href="{{ route('public') }}">公開 GTIN 批量驗證頁面</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">公開產品頁面 </a>
+          <a class="nav-link" href="{{ route('publicProduct', ['gtin'=>'68660202eae8f']) }}">公開產品頁面 </a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

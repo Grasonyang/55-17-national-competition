@@ -2,19 +2,10 @@
 @section('main')
     <div class="container">
         <div class="d-flex align-items-center justify-content-between">
-            <h2>產品管理頁面</h2>
+            <h2>停用產品管理頁面</h2>
             
             <div>
-                @include('form.product.addOrEdit',[
-                    "title"=>"新增產品",
-                    "type"=>"add",
-                    "product"=>null,
-                    "method"=>"POST",
-                    "company_id"=>$company_id ?? null,
-                    "companies"=>$companies ?? null,
-                    "action"=>route('product.add')
-                ])
-                <a href="{{ route('product.stop.show',['company_id'=>$company_id ?? null]) }}" class="btn btn-primary">查看停用產品</a>
+                <a href="{{ route('product.show',['company_id'=>$company_id ?? null]) }}" class="btn btn-primary">返回</a>
             </div>
         </div>
         <table class="table">
@@ -41,21 +32,12 @@
                             @endif
                         </td>
                         <td>
-                            @include('form.product.addOrEdit',[
-                                "title"=>"修改產品",
-                                "type"=>"edit",
-                                "product"=>$product,
-                                "method"=>"PUT",
-                                "action"=>route('product.edit', ['product_id'=>$product->gtin]),
-                                "company_id"=>$company_id ?? null,
-                                "companies"=>$companies ?? null,
-                            ])
                             @include('form.product.deleteOrStop',[
-                                "title"=>"停用",
-                                "type"=>"stop",
+                                "title"=>"刪除",
+                                "type"=>"dele",
                                 "product"=>$product,
-                                "method"=>"PUT",
-                                "action"=>route('product.stop', ['product_id'=>$product->gtin]),
+                                "method"=>"DELETE",
+                                "action"=>route('product.dele', ['product_id'=>$product->gtin]),
                                 "company_id"=>$company_id ?? null,
                                 "companies"=>$companies ?? null,
                             ])

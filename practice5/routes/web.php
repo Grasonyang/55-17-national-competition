@@ -31,6 +31,12 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/public', function () {
+    return view('public');
+})->name('public');
+
+Route::get('/publicProduct/01/{gtin}', [ProductController::class, 'showPublicProduct'])->name('publicProduct');
+
 Route::middleware(['auth'])->group(function(){
     Route::prefix('company')->group(function(){
         Route::get('/', [CompanyController::class, 'index'])->name('company');

@@ -20,7 +20,7 @@
                         @if($companies!==null)
                             <select name="company_id">
                                 @foreach($companies as $company)
-                                    <option value="{{ $company->gtin }}">
+                                    <option value="{{ $company->id }}">
                                         {{ $company->name }}
                                     </option>
                                 @endforeach
@@ -36,10 +36,10 @@
                     </div>
                     <div class="mb-3">
                         @if($product!=null)
-                            @foreach($product->images() as $image)
+                            @foreach($product->images as $image)
                                 <div>
-                                    <input type="hidden" name="images[]">
-                                    <img src="{{ asset('storage/'.$image->image_url ) }}" alt="">
+                                    <input type="hidden" value="{{ $image->image_url }}" name="images[]">
+                                    <img src="{{ asset($image->image_url ) }}" alt="">
                                     <button onclick="$(this).parent().remove()">刪除</button>
                                 </div>
                             @endforeach

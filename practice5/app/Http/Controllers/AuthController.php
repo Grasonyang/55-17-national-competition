@@ -18,6 +18,7 @@ class AuthController extends Controller
                 "email"=>"required|email|string",
                 "password"=>"required|string|min:8",
             ]);
+            // dd($request->all());
             if(Auth::attempt([
                 "email"=>$request->input('email'),
                 "password"=>$request->input('password'),
@@ -27,7 +28,7 @@ class AuthController extends Controller
                 abort(400);
             }
         }catch(\Exception $e){
-            abort(400);
+            abort(400, $e->getMessage());
         }
     }
     public function register(Request $request){
@@ -40,7 +41,7 @@ class AuthController extends Controller
             $user=User::create([
                 "name"=>$request->input('name'),
                 "email"=>$request->input('email'),
-                "password"=>$request->input('password'),
+                "password"=>bcrypt($request->input('password')),
             ]);
             Auth::login($user);
             return redirect()->route('home');

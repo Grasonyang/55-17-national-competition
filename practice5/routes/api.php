@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+use App\Http\Controllers\ProductController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/products.json', [ProductController::class, 'getAllProducts'])->name('api.products.all');
+Route::get('/product/{gtin}.json', [ProductController::class, 'getProducts'])->name('api.products');
+Route::post('/public/check', [ProductController::class, 'checkGtins'])->name('public.check');
