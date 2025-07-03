@@ -1,0 +1,127 @@
+#map-container {
+    padding: 80px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#map-container .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "left right";
+    gap: 40px;
+    width: 100%;
+    max-width: 1400px;
+
+}
+
+#map-card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    grid-area: left;
+}
+
+#map-img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    grid-area: right;
+}
+
+#map-img-container img {
+    width: 100%;
+}
+
+#map-img-points {
+    position: relative;
+}
+
+#map-img-points .point {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: red;
+    transition: all 0.3s ease-in-out;
+}
+
+/* #map-img-points .point:hover {
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+} */
+
+.hover_link {
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.hover_pointer {
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+@media screen and (max-width:600px) {
+    #map-container {
+        padding: 20px 20px;
+    }
+
+    #map-container .content {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "right"
+            "left";
+        gap: 10px;
+        width: 100%;
+        max-width: 1400px;
+    }
+
+    #map-card-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        gap: 20px;
+        grid-area: left;
+    }
+}
+
+@media screen and (min-width:601px) and (max-width:900px) {
+    #map-container {
+        padding: 40px 40px;
+    }
+
+    #map-container .content {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "right"
+            "left";
+        gap: 25px;
+        width: 100%;
+        max-width: 1400px;
+    }
+}
+
+@media screen and (min-width:901px) and (max-width:1200px) {
+    #map-container {
+        padding: 60px 60px;
+    }
+
+    #map-container .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        width: 100%;
+        max-width: 1400px;
+    }
+}

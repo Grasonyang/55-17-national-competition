@@ -1,0 +1,137 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 80px;
+    background-color: rgba(0, 217, 255, 0.788);
+    backdrop-filter: blur(5px);
+    font-size: 20px;
+    z-index: 1000000;
+}
+
+.header a {
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+
+.header a:hover {
+    color: #32005c;
+}
+
+
+.header #nav-menu-1-control {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    display: none;
+    padding: 5px;
+}
+
+.header #nav-menu-1-control div {
+    width: 100%;
+    border: 2px solid rgb(0, 2, 122);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.header #nav-menu-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    gap: 40px;
+}
+
+@media screen and (min-width:900px) and (max-width:1200px) {
+    .header {
+        padding: 10px 20px;
+        font-size: 18px;
+    }
+
+}
+
+@media screen and (max-width:900px) {
+    .header {
+        padding: 10px 40px;
+        flex-direction: column;
+        font-size: 14px;
+    }
+
+    .header>div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .header #nav-menu-1-control {
+        height: 30px;
+        width: 30px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        padding: 5px;
+
+    }
+
+    .header #nav-menu-1-check:checked+#nav-menu-1-control>:nth-child(2) {
+        display: none;
+    }
+
+    .header #nav-menu-1-check:checked+#nav-menu-1-control>:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .header #nav-menu-1-check:checked+#nav-menu-1-control>:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+
+    .header>div:has(#nav-menu-1-check:checked) {
+        padding-bottom: 20px;
+    }
+
+    .header>div:has(#nav-menu-1-check:checked)+#nav-menu-1 {
+        display: flex;
+    }
+
+    .header>div:has(#nav-menu-1-check:checked)+#nav-menu-1 li a:hover {
+        background-color: rgba(64, 193, 216, 0.788);
+        color: blue;
+    }
+
+    .header #nav-menu-1 {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        padding: 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .header #nav-menu-1 li {
+        width: 100%;
+
+    }
+
+    .header>#nav-menu-1>a {
+        display: flex;
+        width: 100%;
+        padding: 5px 10px;
+    }
+}

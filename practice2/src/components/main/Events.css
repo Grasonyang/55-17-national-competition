@@ -1,0 +1,37 @@
+#evnet-container {
+    background-color: rgba(0, 217, 255, 0.788);
+    padding: 80px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#evnet-container .cards-container {
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+    overflow-y: scroll;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 400px;
+    gap: 20px;
+}
+
+@media screen and (max-width:600px) {
+    #evnet-container {
+        padding: 20px 20px;
+    }
+}
+
+@media screen and (min-width:601px) and (max-width:900px) {
+    #evnet-container {
+        padding: 40px 40px;
+    }
+}
+
+@media screen and (min-width:901px) and (max-width:1200px) {
+    #evnet-container {
+        padding: 60px 60px;
+    }
+}
