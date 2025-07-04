@@ -10,41 +10,160 @@
     max-width: 1400px;
     display: grid;
     grid-template-columns: 2fr 1.5fr;
+    grid-template-areas: "form title";
 }
 
-#contact-container .content .name {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+#contact-container .content>div {
+    grid-area: title;
 }
 
-#contact-container .content form label {
-    font-size: 20px;
-    font-weight: bold;
+#contact-container .content form {
+    grid-area: form;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "name1 name2"
+        "email email"
+        "phone phone"
+        "submit submit"
+    ;
+}
+
+#contact-container .content form input[name='first_name'] {
+    grid-area: name1;
+    height: 40px;
+    border: 2px solid black;
+    transition: all 0.3s ease-in-out;
+}
+
+#contact-container .content form input[name='first_name']:focus {
+    grid-area: name1;
+    height: 40px;
+    border: 4px solid black;
+    font-size: 15px;
     letter-spacing: 3px;
 }
 
+#contact-container .content form input[name='second_name'] {
+    grid-area: name2;
+    border: 2px solid black;
+    transition: all 0.3s ease-in-out;
+}
+
+#contact-container .content form input[name='second_name']:focus {
+    grid-area: name2;
+    border: 4px solid black;
+    font-size: 15px;
+    letter-spacing: 3px;
+}
+
+#contact-container .content form input[name='email'] {
+    grid-area: email;
+    border: 2px solid black;
+    transition: all 0.3s ease-in-out;
+}
+
+#contact-container .content form input[name='email']:focus {
+    grid-area: email;
+    border: 4px solid black;
+    font-size: 15px;
+    letter-spacing: 3px;
+}
+
+#contact-container .content form input[name='phone'] {
+    grid-area: phone;
+    border: 2px solid black;
+    transition: all 0.3s ease-in-out;
+}
+
+#contact-container .content form input[name='phone']:focus {
+    grid-area: phone;
+    border: 4px solid black;
+    font-size: 15px;
+    letter-spacing: 3px;
+}
+
+#contact-container .content form button[type='submit'] {
+    grid-area: submit;
+    background-color: transparent;
+    border: 2px solid black;
+    transition: all 0.3s ease-in-out;
+    font-size: 15px;
+    letter-spacing: 5px;
+}
+
+#contact-container .content form button[type='submit']:hover {
+    grid-area: submit;
+    background-color: black;
+    color: white;
+}
 
 @media screen and (max-width:600px) {
-    #info-container {
+    #contact-container {
         padding: 20px 20px;
     }
 
+    #contact-container .content {
+        width: 100%;
+        max-width: 1400px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas: "title"
+            "form";
+    }
+
+    #contact-container .content>div {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    #contact-container .content form {
+        grid-area: form;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+            "name1 "
+            "name2 "
+            "email "
+            "phone "
+            "submit "
+        ;
+    }
 
 }
 
 @media screen and (min-width:601px) and (max-width:900px) {
-    #info-container {
+    #contact-container {
         padding: 40px 40px;
     }
 
+    #contact-container .content {
+        width: 100%;
+        max-width: 1400px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas: "title"
+            "form";
+    }
 
+    #contact-container .content>div {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
 
 
 }
 
 @media screen and (min-width:901px) and (max-width:1200px) {
-    #info-container {
+    #contact-container {
         padding: 60px 60px;
     }
 
