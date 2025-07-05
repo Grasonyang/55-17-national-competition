@@ -1,0 +1,8 @@
+--- 
+title: Future Heritage 
+summary: Not available yet. 
+tags: future 
+cover: future.jpg 
+--- 
+Coming soon content. 
+future-photo.jpg 

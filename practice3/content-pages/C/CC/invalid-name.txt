@@ -1,0 +1,7 @@
+--- 
+title: Invalid Name 
+summary: Filename format incorrect. 
+cover: invalid.jpg 
+tags: invalid 
+--- 
+This file will not be picked up due to bad filename. 
