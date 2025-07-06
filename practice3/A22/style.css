@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: black; */
+}
+.container{
+    height: 500px;
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+.container>div{
+    height:0;
+    background-color: black;
+    width: 50px;
+    transition: all 1s linear;
+    transition-delay: var(--delay);
+}
+.container:hover div{
+    height: calc(var(--height)*90px);
+}

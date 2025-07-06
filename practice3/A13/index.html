@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="drip"></div>
+        <div class="dot"></div>
+        <div class="drip"></div>
+    </div>
+    <svg>
+        <defs>
+            <filter id="drippp">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+                <feColorMatrix
+                in="result"
+                type="matrix"
+                values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 40 -15" />
+            </filter>
+        </defs>
+    </svg>
+</body>
+</html>

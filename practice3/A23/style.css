@@ -1,0 +1,61 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: black; */
+}
+.container {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: conic-gradient(
+    red 0deg 90deg,
+    orange 90deg 180deg,
+    yellow 180deg 270deg,
+    green 270deg 360deg
+  );
+  animation: reveal 3s linear;
+}
+
+/* Safari 專用 -webkit prefix */
+@keyframes reveal {
+  0% {
+    background: conic-gradient(black 0deg, black 360deg);
+  }
+  25%{
+    background: conic-gradient(
+        red 0deg 90deg,
+        black 90deg 360deg
+    );
+  }
+  50%{
+    background: conic-gradient(
+        red 0deg 90deg,
+        orange 90deg 180deg,
+        black 180deg 360deg
+    );
+  }
+  75%{
+    background: conic-gradient(
+        red 0deg 90deg,
+        orange 90deg 180deg,
+        yellow 180deg 270deg,
+        black 270deg 360deg
+    );
+  }
+  100% {
+    background: conic-gradient(
+    red 0deg 90deg,
+    orange 90deg 180deg,
+    yellow 180deg 270deg,
+    green 270deg 360deg
+  );
+  }
+}
