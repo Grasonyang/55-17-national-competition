@@ -1,0 +1,14 @@
+---
+title: Lyon Cathedral
+tags: cathedral, gothic, architecture
+cover: cathedral.jpg
+summary: A historic cathedral blending Romanesque and Gothic styles.
+---
+
+The Lyon Cathedral, also known as St. Jean Cathedral, dates back to the 12th century.
+
+Its astronomical clock is a fascinating attraction.
+
+cathedral-clock.jpg
+
+This site hosts annual light shows during Lyon’s Fête des Lumières.

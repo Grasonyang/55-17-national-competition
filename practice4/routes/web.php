@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\FileController;
+Route::get('/', [FileController::class, 'index'])->name('go');
+Route::get('heritages/{path?}', [FileController::class, 'index'])->where('path',".*")->name('go');
