@@ -1,0 +1,14 @@
+---
+title: The Famous Murals of Lyon
+tags: mural, art, culture
+cover: murals.jpg
+summary: Lyon’s walls are canvases for giant artistic murals.
+---
+
+Lyon is famous for its trompe-l’œil murals that depict life-like scenes.
+
+One of the most well-known is the “Mur des Canuts.”
+
+canuts.jpg
+
+These murals celebrate daily life and historical figures.

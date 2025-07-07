@@ -1,0 +1,14 @@
+---
+title: Old Town Lyon
+tags: renaissance, old-town, unesco
+cover: oldtown.jpg
+summary: The Renaissance district of Lyon, a UNESCO World Heritage site.
+---
+
+Vieux Lyon is known for its preserved medieval and Renaissance architecture.
+
+It contains many traboules, which are hidden passageways between buildings.
+
+traboule.jpg
+
+Walking through these alleys feels like stepping back in time.

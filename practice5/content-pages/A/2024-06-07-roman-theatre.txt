@@ -1,0 +1,15 @@
+---
+tags: roman, theatre, ruins
+title: Ancient Roman Theatre
+cover: rome-theatre.jpg
+summary: A large Roman amphitheatre still used for modern performances.
+draft: true
+---
+
+Located in Fourvière, this Roman theatre is one of the oldest in France.
+
+It was built around 15 BC and could host 10,000 spectators.
+
+      roman-stage.jpg
+
+Today, it’s still used for cultural festivals.
