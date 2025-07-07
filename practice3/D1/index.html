@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="mask"></div>
+        <img src="./1.jpg" alt="">
+    </div>
+    <script src="./jquery.min.js"></script>
+</body>
+<script>
+    $(".wrapper").on('mousemove',function(e){
+        console.log(e.offsetX, e.offsetY);
+        let repos = `radial-gradient(circle at ${e.offsetX}px ${e.offsetY}px, transparent 0px, black 300px)`;
+        $(".mask").css({
+            "background": repos,
+        })
+    });
+    $(".wrapper").on('mouseleave',function(){
+        $(".mask").css({
+            "background": "none",
+        })
+    });
+</script>
+</html>

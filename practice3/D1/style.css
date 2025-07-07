@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    box-sizing: border-box;    
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white; /* 確保背景是白色 */
+}
+.wrapper{
+    width: 50%;
+    height: 50%;
+    position: relative;
+}
+img{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.wrapper .mask{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: radial-gradient(circle at center, transparent 0px, black 300px);
+}
