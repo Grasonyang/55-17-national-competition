@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\SearchController;
+
+Route::get('/', [SearchController::class, 'root'])->name('go');
+Route::get('/heritages/{path?}', [SearchController::class, 'root'])->where('path','.*')->name('go');
+Route::get('/tags/{tags?}', [SearchController::class, 'tags'])->where('tags','.*')->name('tags');
+Route::get('/search/{keywords?}', [SearchController::class, 'search'])->where('keywords','.*')->name('search');
+
+
+
+
