@@ -1,0 +1,130 @@
+#action {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../assets/image/3.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: all 0.3s ease-in-out;
+}
+
+#action::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    z-index: 10;
+}
+
+#action:hover::after {
+    background-color: rgba(255, 255, 255, 0.651);
+}
+
+#action:hover {
+    background-position: 55% 55%;
+}
+
+#action #ac-title {
+    font-weight: bolder;
+    font-size: 50px;
+    color: var(--color1);
+    text-shadow: 4px 4px 5px yellow;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    z-index: 20;
+    letter-spacing: 10px;
+}
+
+#action:hover #ac-title {
+    transform: scale(1.1);
+}
+
+#action #ac-txt {
+    color: var(--color1);
+    text-shadow: 4px 4px 5px yellow;
+    letter-spacing: 5px;
+    position: relative;
+    z-index: 20;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+#action:hover #ac-txt {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+#action #ac-btn {
+    height: 70px;
+    width: 200px;
+    position: absolute;
+    z-index: 20;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0px;
+    background-color: var(--color1);
+    color: white;
+    font-size: 20px;
+    letter-spacing: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+#action #ac-btn:hover {
+    border: 5px dashed yellow;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 520px) {
+    #action {
+        height: 300px;
+        gap: 20px;
+    }
+
+    #action #ac-title {
+        font-size: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #action #ac-txt {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    #action #ac-btn {
+        height: 50px;
+        width: 180px;
+        font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 521px) and (max-width: 950px) {
+    #action {
+        height: 300px;
+        gap: 30px;
+    }
+
+    #action #ac-title {
+        font-size: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+/* @media screen and (min-width:951px) and (max-width: 1152px) {
+    .container {
+        padding: 40px 40px;
+    }
+} */

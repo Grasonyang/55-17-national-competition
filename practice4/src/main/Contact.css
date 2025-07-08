@@ -1,0 +1,71 @@
+#contact {
+    background-color: black;
+    color: wheat;
+}
+
+#contact .title {
+    color: white;
+}
+
+#contact form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    grid-template-areas:
+        "fname lname"
+        "email email"
+        "address address"
+        "submit submit";
+}
+
+#contact form .name>input:nth-of-type(1) {
+    grid-area: fname;
+}
+
+#contact form .name>input:nth-of-type(2) {
+    grid-area: lname;
+}
+
+#contact form .email {
+    grid-area: email;
+}
+
+#contact form .address {
+    grid-area: address;
+}
+
+#contact form .submit {
+    grid-area: submit;
+}
+
+#contact form input {
+    height: 40px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: lighter;
+    letter-spacing: 2px;
+
+    background-color: white;
+    padding: 5px;
+}
+
+#contact form input:focus {
+    border: thick double black;
+    outline: none;
+}
+
+#contact form button {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+#contact form button:hover {
+    color: white;
+    background-color: black;
+    border: thick double white;
+}
