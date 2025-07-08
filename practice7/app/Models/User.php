@@ -6,11 +6,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+// use Laravel\Sanctum\HasApiTokens;
+
+use App\Models\task;
+use App\Models\user_quota_transaction;
+
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,10 +22,22 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
-        'password',
+        'password_hash',
+        'nickname',
+        'profile_image',
+        'type',
+        'access_token',
     ];
+
+    /**
+     * The attributes that have default values.
+     *
+     * @var array
+     */
+    // protected $attributes = [
+    //     'type' => 'user',
+    // ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -29,8 +45,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password_hash',
     ];
 
     /**
@@ -39,6 +54,14 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
+    public function tasks(){
+        return $this->hasMany(task::class);
+    }
+    public function user_quota_transactions(){
+        return $this->hasMany(user_quota_transaction::class);
+    }
+    
 }

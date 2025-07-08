@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('worker_task_types', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('password_hash');
-            $table->string('nickname');
-            $table->string('profile_image');
-            $table->enum('type',['admin','user'])->default('user');
-            $table->string('access_token')->nullable();
+            $table->foreignId('worker_id')->constrained('workers')->onDelete('restrict');
+            $table->foreignId('task_type_id')->constrained('task_types')->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('worker_task_types');
     }
 };
