@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/bootstrap.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="img-container" draggable="false">
+        <img src="./assets/image/B.png"  draggable="false" id="new" alt="new">
+        <img src="./assets/image/A.png"  draggable="false" id="old" alt="old">
+        <img src="./assets/image/divider.svg" draggable="true" id="dividor" alt="">
+    </div>
+    <script src="./assets/bootstrap.bundle.js"></script>
+    <script src="./assets/jquery.min.js"></script>
+</body>
+<script>
+    let start = false;
+    $("#dividor").on('mousedown',function(e){
+        start = true;
+        // 拖曳時讓滑鼠事件穿透
+        $(this).css('pointer-events', 'none');
+        e.preventDefault();
+    })
+    $(".img-container").on('mousemove',function(e){
+        if(start){
+            $("#dividor").css({
+                left:`${e.offsetX}px`
+            })
+            $("#old").css({
+                "clip-path":`inset(0% ${800-e.offsetX}px 0% 0%)`
+            })
+        }
+    })
+    $(document).on('mouseup',function(e){
+        if(start) {
+            start = false;
+            // 拖曳結束後恢復滑鼠事件
+            $("#dividor").css('pointer-events', 'auto');
+        }
+    })
+</script>
+</html>
