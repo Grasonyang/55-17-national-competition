@@ -1,0 +1,14 @@
+---
+title: Confluence Museum
+tags: museum, science, architecture
+cover: confluence.jpg
+summary: A futuristic museum exploring science and anthropology.
+---
+
+This architectural wonder sits at the meeting point of Rhône and Saône rivers.
+
+It features exhibitions on natural history, anthropology, and civilizations.
+
+museum-exhibit.jpg
+
+Its design is modern, full of glass and geometric shapes.

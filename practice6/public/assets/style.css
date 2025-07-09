@@ -1,0 +1,32 @@
+*{
+    font-variant-ligatures: common-ligatures;
+}
+#banner{
+    width: 100%;
+    position: relative;
+}
+#banner img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+#banner h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    font-size: 2.5rem;
+    text-align: center;
+}
+#banner #look{
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: none;
+}
