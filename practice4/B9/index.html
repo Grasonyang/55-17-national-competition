@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+
+</head>
+
+<body>
+    <div class="boxs">
+        <img src="./assets/image/B.png" draggable="false" alt="">
+        <img src="./assets/image/A.png" id="old" draggable="false" alt="">
+        <img src="./assets/image/divider.svg" id="dividor" alt="">
+    </div>
+    <script src="./assets/jquery.min.js"></script>
+</body>
+<script>
+    let start = false;
+    $("#dividor").on('mousedown', function (e) {
+        start = true;
+        $("#dividor").css({
+            "pointer-events": "none"
+        })
+        e.preventDefault();
+    })
+    $(".boxs").on('mousemove', function (e) {
+        if (start) {
+            $("#dividor").css({
+                "left": `${e.offsetX}px`
+            })
+            $("#old").css({
+                "clip-path": `inset(0% ${800 - e.offsetX}px 0% 0%)`
+            })
+        }
+    })
+    $(".boxs").on('mouseup', function (e) {
+        start = false;
+        $("#dividor").css({
+            "pointer-events": "auto"
+        })
+    })
+</script>
+
+</html>

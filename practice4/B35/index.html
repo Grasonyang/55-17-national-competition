@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+
+</head>
+
+<body>
+    <canvas height="500" width="500"></canvas>
+    <input type="number" min="1" value="1">
+    <script src="./assets/jquery.min.js"></script>
+</body>
+<script>
+    let base = [
+        [
+            {
+                "x": 250,
+                "y": 0
+            }, {
+                "x": 0,
+                "y": 500
+            }, {
+                "x": 500,
+                "y": 500
+            }
+        ]
+    ]
+    // let num = 1;
+    // getPoint(num);
+    getPoint(0);
+    draw()
+    $("input").on('change', function () {
+        base = [
+            [
+                {
+                    "x": 250,
+                    "y": 0
+                }, {
+                    "x": 0,
+                    "y": 500
+                }, {
+                    "x": 500,
+                    "y": 500
+                }
+            ]
+        ]
+        getPoint($(this).val() - 1)
+        console.log(base)
+        draw();
+    })
+    function getPoint(num) {
+        if (num <= 0)
+            return;
+        let newBase = [];
+        for (let i = 0; i < base.length; i++) {
+            let p = base[i];
+            let p1 = p[0];
+            let p2 = p[1];
+            let p3 = p[2];
+            let mid1 = {
+                "x": (p1.x + p2.x) / 2,
+                "y": (p1.y + p2.y) / 2,
+            }
+            let mid2 = {
+                "x": (p3.x + p2.x) / 2,
+                "y": (p3.y + p2.y) / 2,
+            }
+            let mid3 = {
+                "x": (p1.x + p3.x) / 2,
+                "y": (p1.y + p3.y) / 2,
+            }
+            newBase.push([
+                p1, mid1, mid3
+            ]);
+            newBase.push([
+                p2, mid1, mid2
+            ]);
+            newBase.push([
+                p3, mid3, mid2
+            ]);
+        }
+        base = newBase;
+        getPoint(num - 1);
+    }
+    function draw() {
+        let ctx = $("canvas")[0].getContext('2d');
+        ctx.clearRect(0, 0, 500, 500);
+        for (let i = 0; i < base.length; i++) {
+            let p = base[i];
+            let p1 = p[0];
+            let p2 = p[1];
+            let p3 = p[2];
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.lineTo(p3.x, p3.y);
+            ctx.closePath();
+            ctx.fillStyle = "black";
+            ctx.fill();
+        }
+    }
+</script>
+
+</html>
