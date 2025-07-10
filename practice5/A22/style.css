@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    height: 500px;
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+.container .bar{
+    width: 20px;
+    height: 0px;
+    
+    transition: all 1s ease-in-out;
+    transition-delay: var(--delay);
+    background-color: black;
+}
+.container:hover .bar{
+    height: var(--height);
+}

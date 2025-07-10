@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="./image/B.png" draggable="false" id="new_img" alt="">
+        <img src="./image/A.png" draggable="false" id="old_img" alt="">
+        <img src="./image/divider.svg" id="dividor" alt="">
+    </div>
+    <script src="./jquery.min.js"></script>
+</body>
+<script>
+
+    let enter = false
+    $("#dividor").on('mousedown',function(e){
+        $("#dividor").css({
+            "pointer-events": "none"
+        })
+        enter=1;
+        e.preventDefault()
+    })
+    $(".container").on('mousemove',function(e){
+        if(enter==1){
+            $("#dividor").css({
+                "left": e.offsetX
+            })
+            $("#old_img").css({
+                "clip-path": `inset(0% ${800-e.offsetX}px 0% 0%)`
+            })
+        }
+    })
+    $(document).on('mouseup',function(e){
+        enter=0;
+        $("#dividor").css({
+            "pointer-events": "auto"
+        })
+    })
+</script>
+</html>

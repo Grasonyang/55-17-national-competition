@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    height: 500px;
+    width: 800px;
+    position: relative;
+}
+.container img{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+#old_img{
+    clip-path: inset(0% 100% 0% 0%);
+}
+#dividor{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+    border-radius: 50%;
+    background-color: white;
+}
