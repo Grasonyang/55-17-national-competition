@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/practice1/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice1/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice1/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice1/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice1/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice1/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice2/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice2/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice2/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice2/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice2/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice2/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice3/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice3/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice3/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice3/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice3/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice3/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice4/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice4/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice4/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice4/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice4/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice4/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice5/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice5/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice5/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice5/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice5/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice5/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice6/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice6/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice6/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice6/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/practice6/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/practice6/tests/Unit" isTestSource="true" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
