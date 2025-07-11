@@ -1,0 +1,14 @@
+---
+title: Parc de la Tête d'Or
+tags: park, nature, zoo
+cover: park.jpg
+summary: Lyon’s largest park with gardens, a zoo, and a lake.
+---
+
+Parc de la Tête d'Or is a green escape in the middle of Lyon.
+
+It includes a zoo, botanical garden, and rowing lake.
+
+zoo.jpg
+
+Families and joggers alike enjoy its peaceful setting.
