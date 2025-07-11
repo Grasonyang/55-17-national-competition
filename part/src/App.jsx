@@ -1,5 +1,6 @@
 import './App.css'
-import Card1 from "./component/card/type1.jsx";
+
+import Card1 from "./component/card/type1.jsx"
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -7,7 +8,7 @@ function App() {
   return (
     <>
       <h1>Hello</h1>
-      <Card1></Card1>
+      <Card1 />
     </>
   )
 }
