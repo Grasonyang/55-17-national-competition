@@ -1,0 +1,61 @@
+:root {
+  --color1: rgb(16, 0, 235);
+  --color1-hover: rgb(16, 0, 235);
+}
+
+main {
+  padding-top: 80px;
+}
+
+.container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 80px;
+  /* padding-top: ; */
+}
+
+.child-container {
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+}
+
+.child-container .title {
+  font-size: 35px;
+  font-weight: 700;
+  letter-spacing: 10px;
+  color: var(--color1);
+  text-align: center;
+}
+
+@media screen and (max-width: 950px) {
+  .container {
+    padding: 40px 10px;
+  }
+
+  .child-container .title {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width:951px) and (max-width: 1152px) {
+  .container {
+    padding: 60px 40px;
+  }
+
+  .child-container .title {
+    font-size: 25px;
+  }
+}
+
+.scroll-target {
+  scroll-margin-top: 80px !important;
+  /* 根據 header 的高度調整 */
+}

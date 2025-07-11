@@ -8,24 +8,11 @@ function Contact() {
             <section id="contact-container">
                 <div className="content">
                     <form action="" method="post">
-                        <div className='name'>
-                            <div>
-                                <label htmlFor="first_name">First Name</label>
-                                <input type="text" id='first_name' />
-                            </div>
-                            <div>
-                                <label htmlFor="first_name">Last Name</label>
-                                <input type="text" id='first_name' />
-                            </div>
-                        </div>
-                        <div className='email'>
-                            <label htmlFor="email">Email</label>
-                            <input type="email" id='email' />
-                        </div>
-                        <div className='phone'>
-                            <label htmlFor="phone">Phone</label>
-                            <input type="text" id='phone' />
-                        </div>
+                        <input type="text" placeholder='First Name' name='first_name' />
+                        <input type="text" placeholder='Last Name' name='second_name' />
+                        <input type="email" placeholder='Email' name='email' />
+                        <input type="tel" placeholder='Phone' pattern='[0-9]{4}-[0-9]{6}' name='phone' />
+                        <button type='submit'>Send</button>
                     </form>
                     <div>
                         <StarIcon name="聯絡我們" deep={false}></StarIcon>
