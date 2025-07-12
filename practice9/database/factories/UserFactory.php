@@ -18,11 +18,12 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'email' => $this->faker->unique()->safeEmail,
+            'password_hash' => bcrypt('password'),
+            'nickname' => $this->faker->userName,
+            'profile_image' => null,
+            'type' => $this->faker->randomElement(['ADMIN','USER']),
+            'access_token' => null,
         ];
     }
 
@@ -35,6 +36,18 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    /**
+     * Indicate that the user is logged in with an access token.
+     *
+     * @return $this
+     */
+    public function loggedIn(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'access_token' => Str::random(32),
         ]);
     }
 }

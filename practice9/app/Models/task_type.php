@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\task;
-use App\Models\user_quota_transaction;
+use App\Models\worker;
+use App\Models\task_type_input;
+use App\Models\task_type_output;
 
-
-class User extends Authenticatable
+class task_type extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -22,12 +20,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'email',
-        'password_hash',
-        'nickname',
-        'profile_image',
-        'type',
-        'access_token'
+        'name',
+        'cost_quota',
     ];
 
     /**
@@ -46,14 +40,20 @@ class User extends Authenticatable
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+        
     ];
     public function tasks(){
         return $this->hasMany(task::class);
     }
-    public function transaction_quotas(){
-        return $this->hasMany(user_quota_transaction::class);
+    public function workers(){
+        return $this->belongsToMany(worker::class, 'worker_task_types', 'task_type_id', 'worker_id');
     }
-    public function quota(){
-        return $this->transaction_quotas()->sum('value');
+    public function task_type_inputs(){
+        return $this->hasMany(task_type_input::class);
     }
+    public function task_type_outputs(){
+        return $this->hasMany(task_type_output::class);
+    }
+    
 }
