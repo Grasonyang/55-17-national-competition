@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./jquery-ui.min.css">
+</head>
+
+<body>
+    <ul class="list">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+    </ul>
+    <ul class="list">
+        <li>E</li>
+        <li>F</li>
+        <li>G</li>
+        <li>H</li>
+    </ul>
+    <ul class="list">
+        <li>I</li>
+        <li>J</li>
+        <li>K</li>
+        <li>L</li>
+    </ul>
+
+    <script src="./jquery.min.js"></script>
+    <script src="./jquery-ui.min.js"></script>
+</body>
+<script>
+    $(".list").sortable({
+        "connectWith": ".list"
+    })
+</script>
+
+</html>
