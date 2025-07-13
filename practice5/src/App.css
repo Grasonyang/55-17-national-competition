@@ -1,0 +1,14 @@
+#root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+:root {
+  --color1: rgb(85, 85, 85);
+  --color1-hover: rgb(52, 63, 73);
+  --color2: rgb(36, 36, 36);
+}
