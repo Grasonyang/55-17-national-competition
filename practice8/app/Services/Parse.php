@@ -50,15 +50,13 @@ class Parse{
     public static function Title($front,$last,$filename){
         if(preg_match('/^\s*title\s*:(.*?)$/mi',$front,$match)){
             return trim($match[1]);
-        }else{
-            if(preg_match('/<h1\s*[^>]>(.*?)<\/h1>/si',$last,$match)){
-                return trim($match[1]);
-            }else{
-                $filename = substr(11, $filename);
-                $filename = str_replace('-', ' ',$filename);
-                return $filename;
-            }
         }
+        if(preg_match('/<h1\s*[^>]>(.*?)<\/h1>/si',$last,$match)){
+            return trim($match[1]);
+        }
+        $filename = substr(11, $filename);
+        $filename = str_replace('-', ' ',$filename);
+        return $filename;
     }
     public static function Tags($front,$relativePath){
         if(preg_match('/^\s*tags\s*:(.*?)$/mi',$front,$match)){
@@ -73,37 +71,28 @@ class Parse{
                 self::$tags[$tag][] = $relativePath;
             }
             return $tags;
-        }else{
-            return [];
         }
+        return [];
     }
     public static function Cover($front){
         if(preg_match('/^\s*cover\s*:([0-9A-Za-z_-]*.(jpg|png|jpeg))$/mi',$front,$match)){
             $img=trim($match[1]);
             $file = base_path("public/images/$img");
-            if(file_exists($file)){
-                return url("images/$img");
-            }else{
-                return url("images/default.png");
-            }
+            return file_exists($file) ? url("images/$img") : url("images/default.png");
         }else{
             return url("images/default.png");
         }
     }
     public static function Summary($front){
-        if(preg_match('/^\s*summary\s*:(.*?)$/mi',$front,$match)){
-            return trim($match[1]);
-        }else{
-            return "";
-        }
+        return preg_match('/^\s*summary\s*:(.*?)$/mi',$front,$match) 
+            ? trim($match[1]) 
+            : '';
     }
     public static function Draft($front){
         if(preg_match('/^\s*draft\s*:(.*?)$/mi',$front,$match)){
-            $draft = strtolower(trim($match[1]));
-            return $draft==='true';
-        }else{
-            return false;
+            return strtolower(trim($match[1]))==='true';
         }
+        return false;
     }
     public static function Content($last,$extension){
         // check and change img path
@@ -114,36 +103,32 @@ class Parse{
                 $imgs= array_unique($imgs);
                 foreach($imgs as $img){
                     $file = base_path("public/images/$img");
-                    if(file_exists($file)){
-                        $url = url("images/$img");
-                    }else{
-                        $url = url("images/default.png");
-                    }
-                    $last = str_replace($img,$url,$last);
+                    $path = file_exists($file)
+                        ? "images/$img"
+                        : "images/default.png";
+                    
+                    $last = str_replace($img,url($path),$last);
                 }
                 return $last;
-            }else{
-                return $last;
             }
-        }else{
-            if(preg_match_all('/^\s*([0-9A-Za-z_-]*.(jpg|png|jpeg))\s*$/mi',$last,$match)){
-                $imgs=$match[1];
-                $imgs= array_map("trim",$imgs);
-                $imgs= array_unique($imgs);
-                foreach($imgs as $img){
-                    $file = base_path("public/images/$img");
-                    if(file_exists($file)){
-                        $url = url("images/$img");
-                    }else{
-                        $url = url("images/default.png");
-                    }
-                    $last = str_replace($img,"<img src='$url' alt='$img' class='float-end w-100'>",$last);
-                }
-                return $last;
-            }else{
-                return $last;
-            }
+            return $last;
         }
+        if(!preg_match_all('/^\s*([0-9A-Za-z_-]*.(jpg|png|jpeg))\s*$/mi',$last,$match)){
+            return $last;
+        }
+        $imgs=$match[1];
+        $imgs= array_map("trim",$imgs);
+        $imgs= array_unique($imgs);
+        foreach($imgs as $img){
+            $file = base_path("public/images/$img");
+            if(file_exists($file)){
+                $url = url("images/$img");
+            }else{
+                $url = url("images/default.png");
+            }
+            $last = str_replace($img,"<img src='$url' alt='$img' class='float-end w-100'>",$last);
+        }
+        return $last;
     }
     public static function getAllTags(){
         return self::$tags;

@@ -13,6 +13,7 @@ class PageController extends Controller
         $path = trim($path, '\\');
         $rePath = "content-pages/".trim($path,'/');
         $fullPath = base_path($rePath);
+        // is_dir
         if(!preg_match('/[0-9]{4}-[0-9]{2}-[0-9]{2}-/',basename($fullPath))){
             // folder
             $breads = $this->getBread($path);
