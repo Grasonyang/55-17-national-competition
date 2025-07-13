@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\PageController;
+Route::get('/', [PageController::class, 'index'])->name('go');
+Route::get('/heritages/{path?}', [PageController::class, 'index'])->where('path','.*')->name('go');
+Route::get('/tags/{tags?}', [PageController::class, 'tags'])->where('tags','.*')->name('tags');
