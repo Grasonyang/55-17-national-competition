@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab Navigation</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="tab" class="fadeIn">
+        <ul>
+            <li tabindex="0" class="active">關於我們</li>
+            <li tabindex="0">故事(一)</li>
+            <li tabindex="0">故事(二)</li>
+            <li tabindex="0">故事(三)</li>
+        </ul>
+        <div class="tab-content">
+            <div class="content-panel active" id="panel-1">
+                <h2>關於我們</h2>
+                <p>歡迎來到我們的網站！我們致力於提供最優質的服務。</p>
+            </div>
+            <div class="content-panel" id="panel-2">
+                <h2>故事(一)</h2>
+                <p>這是我們的第一個故事，講述著創業的艱辛與成長。</p>
+            </div>
+            <div class="content-panel" id="panel-3">
+                <h2>故事(二)</h2>
+                <p>第二個故事分享我們在發展過程中遇到的挑戰。</p>
+            </div>
+            <div class="content-panel" id="panel-4">
+                <h2>故事(三)</h2>
+                <p>最後一個故事展望我們的未來與願景。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab切換功能
+        const tabs = document.querySelectorAll('#tab ul li');
+        const panels = document.querySelectorAll('.content-panel');
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                // 移除所有active類
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                // 添加active類到當前項目
+                tab.classList.add('active');
+                panels[index].classList.add('active');
+
+                // 添加點擊動畫效果
+                tab.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    tab.style.transform = '';
+                }, 150);
+            });
+
+            // 鍵盤支援
+            tab.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    tab.click();
+                }
+            });
+        });
+
+        // 頁面載入動畫
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+
+</html>
