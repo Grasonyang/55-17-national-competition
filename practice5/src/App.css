@@ -12,3 +12,11 @@
   --color1-hover: rgb(52, 63, 73);
   --color2: rgb(36, 36, 36);
 }
+
+main {
+  width: 100%;
+}
+
+footer {
+  width: 100%;
+}

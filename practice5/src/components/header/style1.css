@@ -1,9 +1,78 @@
+/* ==========================================
+   CSS Custom Properties (Variables)
+   ========================================== */
+:root {
+    --primary-color: var(--color2, #333);
+    --background-blur: rgba(192, 192, 192, 0.76);
+    --shadow-light: rgba(0, 0, 0, 0.548);
+    --shadow-accent: rgba(255, 204, 37, 0.548);
+    --border-radius: 50px;
+    --transition-speed: 0.3s;
+    --font-weight-bold: bolder;
+    --letter-spacing-wide: 2px;
+    --letter-spacing-wider: 5px;
+}
+
+/* ==========================================
+   Accessibility and Utility Classes
+   ========================================== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.menu-text {
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
+f
+
+/* Focus styles for better accessibility */
+.nav-link:focus,
+.cta-button:focus,
+.contact-btn:focus,
+.mobile-menu-toggle:focus {
+    /* outline: 2px solid var(--color2);
+    outline-offset: 2px; */
+}
+
+/* Skip to content link for screen readers */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color2);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 4px;
+}
+
+.skip-to-content:focus {
+    top: 6px;
+}
+
+/* ==========================================
+   Header Main Container
+   ========================================== */
 #hd {
     width: 100%;
     height: auto;
     position: relative;
 }
 
+/* ==========================================
+   Logo Container Section
+   ========================================== */
 #hd #logo-container {
     width: 100%;
     position: absolute;
@@ -39,13 +108,15 @@
     color: white;
 }
 
+#hd #logo-container #menu-control-2-check {
+    display: none;
+}
 
-
-
-
+/* ==========================================
+   CTA (Call to Action) Container Section
+   ========================================== */
 #hd #cta-container {
     width: 100%;
-
     position: relative;
 }
 
@@ -63,7 +134,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -73,7 +143,7 @@
 
 #hd #cta-container>div h2 {
     font-weight: bolder;
-    font-size: 5rem;
+    font-size: clamp(3rem, 10vw, 5rem);
     color: var(--color2);
     text-shadow: 0 0 10px white;
     letter-spacing: 5px;
@@ -81,7 +151,7 @@
 
 #hd #cta-container>div p {
     font-weight: bolder;
-    font-size: 1.5rem;
+    font-size: clamp(0.8rem, 5vw, 1.5rem);
     color: var(--color2);
     text-shadow: 0 0 10px white;
     letter-spacing: 2px;
@@ -95,7 +165,7 @@
     border-radius: 50px;
     padding: 20px 50px;
     font-weight: bolder;
-    font-size: 1.5em;
+    font-size: clamp(0.8rem, 5vw, 1.5rem);
     letter-spacing: 2px;
     transition: all 0.1s ease-in-out;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.548);
@@ -107,27 +177,31 @@
     color: yellow;
 }
 
-
-
-
-
+/* ==========================================
+   Navigation Container Section
+   ========================================== */
 #hd #nav-container {
-    /* width: 100%; */
     position: absolute;
     bottom: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* 移除 top，避免與 bottom 衝突 */
+}
+
+#hd #nav-container.sticky {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: unset;
+    z-index: 1000
 }
 
 #hd #nav-container ul {
     padding: 5px 20px;
-
     display: flex;
     gap: 5px;
     align-items: center;
     justify-content: center;
-
     list-style: none;
     background-color: rgba(192, 192, 192, 0.76);
     backdrop-filter: blur(5px);
@@ -136,7 +210,7 @@
 }
 
 #hd #nav-container ul li {
-    padding: 15px 0px;
+    padding: 15px 0;
     width: 150px;
     display: flex;
     align-items: center;
@@ -150,8 +224,6 @@
     color: var(--color2);
     font-weight: bolder;
     letter-spacing: 2px;
-
-
 }
 
 #hd #nav-container ul li:hover {
@@ -163,6 +235,9 @@
     color: white;
 }
 
+/* ==========================================
+   Menu Control Elements
+   ========================================== */
 #hd #nav-container #menu-control-3 {
     display: none;
 }
@@ -171,7 +246,12 @@
     display: none;
 }
 
+/* ==========================================
+   Responsive Design - Mobile & Tablet
+   ========================================== */
 @media screen and (max-width: 1000px) {
+
+    /* CTA Container Mobile Adjustments */
     #hd #cta-container>img {
         width: 100%;
         height: 100vh;
@@ -179,6 +259,11 @@
         object-position: center;
     }
 
+    #hd #cta-container>div p {
+        padding: 0 20px;
+    }
+
+    /* Menu Control Visibility */
     #menu-control-1 {
         display: none;
     }
@@ -189,8 +274,10 @@
         z-index: 1000;
     }
 
+    /* Logo Container Mobile Adjustments */
     #hd #logo-container {
         padding: 20px;
+        z-index: 101;
     }
 
     #hd #logo-container button {
@@ -208,6 +295,7 @@
         background-color: white;
     }
 
+    /* Hamburger Menu Icon Styles */
     .menu-icon {
         height: 15px;
         width: 15px;
@@ -224,12 +312,7 @@
         transition: all 0.3s ease-in-out;
     }
 
-    .menu-icon span {
-        width: 100%;
-        height: 2px;
-        background-color: black;
-    }
-
+    /* Active Menu Icon Animation */
     .menu-icon.active {
         justify-content: center;
     }
@@ -248,13 +331,33 @@
         transform: rotate(-45deg);
     }
 
+    /* Mobile Navigation Container */
     #hd #nav-container {
         z-index: 100;
         width: 100%;
+        top: 0;
+        left: 0;
+        bottom: unset;
+        transform: unset;
+        opacity: 0;
+        display: none;
+        transition: all 0.3s ease-in-out;
     }
 
     #hd #nav-container ul {
         flex-direction: column;
         border-radius: 0;
+        padding-top: 80px;
+        width: 100%;
+    }
+
+    #hd #nav-container ul li {
+        width: 100%;
+    }
+
+    /* Menu Toggle Functionality */
+    #logo-container:has(#menu-control-2-check:checked)~#nav-container {
+        opacity: 1;
+        display: flex;
     }
 }

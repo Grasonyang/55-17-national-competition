@@ -1,0 +1,19 @@
+#video-container {
+    width: 100%;
+    padding: 160px 0;
+
+}
+
+#video-container video {
+    width: 100%;
+    border-radius: 50px;
+}
+
+@media screen and (max-width: 1300px) {
+    #video-container {
+        width: 100%;
+        padding: 40px 0;
+
+    }
+
+}

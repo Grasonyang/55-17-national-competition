@@ -1,0 +1,143 @@
+#events-container {
+    max-width: 100%;
+    width: 100%;
+    min-height: 550px;
+    /* 改為 min-height，讓內容可以撐開 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* 改為 flex-start，讓卡片從左開始排列 */
+    gap: 20px;
+    padding: 0 80px;
+    padding-bottom: 80px;
+    overflow-x: auto;
+    /* 水平滾動保持 */
+    overflow-y: hidden;
+    /* 防止垂直滾動 */
+    cursor: grab;
+    /* user-select: none; */
+}
+
+#events-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* 改善滾動條樣式 */
+#events-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+#events-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#events-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+#events-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#events-container .card {
+    border-radius: 10px;
+    padding: 15px;
+    background-color: rgb(246, 246, 246);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.683);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+    min-width: 340px;
+    width: 340px;
+    max-width: 340px;
+    height: 400px;
+    flex-shrink: 0;
+    /* 防止卡片被壓縮 */
+    flex-grow: 0;
+    /* 防止卡片被拉伸 */
+    user-select: none;
+}
+
+#events-container .card-hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    background-color: rgb(255, 188, 32);
+}
+
+#events-container .card .card-img {
+    border-radius: 10px;
+    width: 100%;
+    height: 60%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.548);
+}
+
+#events-container .card .card-links {
+    display: flex;
+    flex-direction: column;
+}
+
+#events-container .card .card-links .link-hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+#events-container .card .card-footer>button {
+    border-radius: 50px;
+    border: 2px solid gray;
+    padding: 5px 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+#events-container .card .card-footer>button:hover {
+    border-radius: 50px;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 5px 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.548);
+}
+
+/* 為第一個和最後一個卡片添加額外的間距 */
+#events-container .card:first-child {
+    margin-left: 0;
+}
+
+#events-container .card:last-child {
+    margin-right: 40px;
+    /* 確保最後一張卡片有足夠的右邊距 */
+}
+
+/* 響應式設計 */
+@media screen and (max-width: 768px) {
+    #events-container {
+        padding: 0 20px;
+        padding-bottom: 40px;
+    }
+
+    #events-container .card {
+        min-width: 280px;
+        width: 280px;
+        max-width: 280px;
+        height: 350px;
+    }
+
+    #events-container .card:last-child {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #events-container {
+        padding: 0 10px;
+        padding-bottom: 30px;
+    }
+
+    #events-container .card {
+        min-width: 250px;
+        width: 250px;
+        max-width: 250px;
+        height: 320px;
+    }
+}
