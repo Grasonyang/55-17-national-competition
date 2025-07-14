@@ -1,0 +1,4 @@
+video {
+    width: 100%;
+    border-radius: clamp(20px, 5vw, 50px);
+}
