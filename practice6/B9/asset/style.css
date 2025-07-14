@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgbox{
+    height: 500px;
+    width: 800px;
+    position: relative;
+    user-select: none;
+}
+.imgbox img{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+#old{
+    clip-path: inset(0 100% 0 0);
+}
+
+#dividor{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: white;
+    pointer-events: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
