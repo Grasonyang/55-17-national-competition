@@ -127,6 +127,18 @@ f
     object-position: center;
 }
 
+#hd #cta-container::after {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.301);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* z-index: 1000; */
+}
+
 #hd #cta-container>div {
     width: 100%;
     position: absolute;
@@ -144,8 +156,8 @@ f
 #hd #cta-container>div h2 {
     font-weight: bolder;
     font-size: clamp(3rem, 10vw, 5rem);
-    color: var(--color2);
-    text-shadow: 0 0 10px white;
+    color: white;
+    /* text-shadow: 0 0 10px white; */
     letter-spacing: 5px;
 }
 
@@ -278,6 +290,10 @@ f
     #hd #logo-container {
         padding: 20px;
         z-index: 101;
+        position: fixed;
+        backdrop-filter: blur(5px);
+        text-shadow: 1px 1px 0px black;
+        color: white;
     }
 
     #hd #logo-container button {
