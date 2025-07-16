@@ -1,0 +1,289 @@
+
+
+
+#hd{
+    width: 100%;
+    height: auto;
+    position: relative;   
+}
+#hd *{
+    transition: all 0.3s ease-in-out;
+}
+/* hd-logo */
+#hd-logo{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: wheat;
+    text-shadow: 1px 1px 0 black;
+    padding: 0 clamp(20px, 2vw ,40px);
+    height: 80px;
+    z-index: 70;
+}
+#hd-logo h1{
+    font-size: clamp(2rem, 2vw, 2.2rem);
+    font-weight: bolder;
+}
+#hd-logo a{
+    font-size: clamp(1rem, 1vw, 1.2rem);
+    font-weight: bolder;
+    color: wheat;
+    text-decoration: none;
+}
+#hd-logo a:hover,#hd-logo a:focus-visible{
+    text-decoration: underline;
+    text-decoration-color: red;
+    text-decoration-thickness: 5px;
+}
+#hd-logo input, label{
+    display: none;
+}
+/* hd-banner */
+#hd-banner{
+    position: relative;
+    height: auto;
+    width: 100%;
+    
+}
+#hd-banner::after{
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 50;
+}
+#hd-banner picture{
+    width: 100%;
+    height: 80vh;
+    
+}
+#hd-banner .slogan{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 70;
+}
+#hd-banner .slogan h2{
+    font-weight: bolder;
+    font-size: clamp(3rem , 8vw, 5rem);
+    color: wheat;
+}
+#hd-banner .slogan p{
+    font-weight: 500;
+    font-size: clamp(1.2rem , 2vw, 1.4rem);
+    color: wheat;
+    padding-bottom: 30px;
+}
+#hd-banner .slogan button{
+    border: 0;
+    border-radius: 50px;
+    padding: 15px 30px;
+    color: wheat;
+    background-color: blue;
+    animation: clickme 2s linear infinite;
+
+}
+@keyframes clickme {
+    0%{
+        transform: rotate(0);
+    }
+    5%{
+        transform: rotate(10deg);
+    }
+    10%{
+        transform: rotate(-10deg);
+    }
+    15%{
+        transform: rotate(20deg);
+    }
+    20%{
+        transform: rotate(-20deg);
+    }
+    25%{
+        transform: rotate(10deg);
+    }
+    30%{
+        transform: rotate(-10deg);
+    }
+    35%{
+        transform: rotate(0);
+    }
+    
+    100%{
+
+    }
+}
+#hd-banner .slogan button:hover{
+    border: 2px dashed yellow;
+    box-shadow: 0 0 10px yellow;
+    animation: clickme_hovered 2s linear infinite;
+}
+@keyframes clickme_hovered {
+    0%{
+        transform: scale(1);
+    }
+    5%{
+        transform: scale(1.2);
+    }
+    10%{
+        transform: scale(1.5);
+    }
+    15%{
+        transform: scale(1.2);
+    }
+    20%{
+        transform: scale(1.7);
+    }
+    25%{
+        transform: scale(1.2);
+    }
+    100%{
+
+    }
+}
+
+
+/* hd-nav */
+#hd-nav{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 70;
+}
+#hd-nav > ul{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    padding: 10px 20px;
+    list-style: none;
+    border-radius: 50px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    gap: 10px;
+}
+#hd-nav > ul > li,#hd-nav > ul > li > a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+#hd-nav > ul > li > a{
+    padding: 10px 20px;
+    border-radius: 50px;
+    color: wheat;
+    text-decoration: none;
+    font-size: 0.9;
+    font-weight: 600;
+}
+
+#hd-nav > ul > li > a:focus-visible,
+#hd-nav > ul > li > a:hover{
+    background-color: rgb(255, 170, 0);
+    color: black;
+    
+}
+#hd-nav.fixed{
+    position: fixed;
+    bottom: unset;
+    top: 10%;
+    
+}
+#hd-nav.fixed > ul{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+@media screen and (max-width: 760px) {
+    #hd-logo{
+        position: fixed;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: wheat;
+        text-shadow: 1px 1px 0 black;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 0 clamp(20px, 2vw ,40px);
+        height: 80px;
+        z-index: 100;
+        backdrop-filter: blur(5px);
+    }
+
+    #hd-logo > a{
+        display: none;
+    }
+    #hd-logo > label{
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: space-around;
+        height: 30px;
+        width: 30px;
+    }
+    #hd-logo > label >span{
+        width: 100%;
+        height: 2px;
+        background-color: wheat;
+        box-shadow: 1px 1px 0px black;
+    }
+    #hd-logo > label:hover >span{
+        width: 100%;
+        height: 2px;
+        background-color: white;
+    }
+    #hd-logo-check:checked ~ label{
+        justify-content: center;
+    }
+    #hd-logo-check:checked ~label>span:nth-child(2){
+        /* justify-content: center; */
+        display: none;
+    }
+    #hd-logo-check:checked ~label>span:nth-child(1){
+        /* justify-content: center; */
+        transform-origin: center;
+        transform: rotate(45deg);
+        box-shadow: 0 0 0;
+    }
+    
+    #hd-logo-check:checked ~ label>span:nth-child(3){
+        /* justify-content: center; */
+        transform-origin: center;
+        transform: rotate(-45deg);
+        box-shadow: 0 0 0;
+    }
+    
+    #hd-logo:has(#hd-logo-check:checked)~#hd-nav {
+        display: block;
+    }
+    #hd-nav{
+        display: none;
+        z-index: 70;
+        position: fixed;
+        width: 100%;
+        top: 80px;
+        left: unset;
+        bottom: unset;
+        transform: unset;
+    }
+    #hd-nav > ul{
+        display: flex;
+        flex-direction: column;
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+    }
+    #hd-nav.fixed{
+        top: 80px;
+    }
+}
